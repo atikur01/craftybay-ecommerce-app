@@ -1,0 +1,371 @@
+{
+  "project_info": {
+    "project_number": "899539591075",
+    "firebase_url": "https://ostad-batch-fourteen-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "ostad-batch-fourteen",
+    "storage_bucket": "ostad-batch-fourteen.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:899539591075:android:97a9edde9523dc4f864416",
+        "android_client_info": {
+          "package_name": "com.app.crafty_bay"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "899539591075-l68rfjhmo8i9psd78l6q9f7rrrthuna1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANsqKSCB5CKx0mYuP83TBp0YJsK4dK7Fw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "899539591075-l68rfjhmo8i9psd78l6q9f7rrrthuna1.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "899539591075-2o3d045dboi69nrijn5rsliqqcapiiak.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.app.craftyBay"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:899539591075:android:4a00712611f93fd9864416",
+        "android_client_info": {
+          "package_name": "com.app.facebook_clone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "899539591075-l68rfjhmo8i9psd78l6q9f7rrrthuna1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANsqKSCB5CKx0mYuP83TBp0YJsK4dK7Fw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "899539591075-l68rfjhmo8i9psd78l6q9f7rrrthuna1.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "899539591075-2o3d045dboi69nrijn5rsliqqcapiiak.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.app.craftyBay"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:899539591075:android:906f4e6c9ad2bbbc864416",
+        "android_client_info": {
+          "package_name": "com.app.guardianx"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "899539591075-l68rfjhmo8i9psd78l6q9f7rrrthuna1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANsqKSCB5CKx0mYuP83TBp0YJsK4dK7Fw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "899539591075-l68rfjhmo8i9psd78l6q9f7rrrthuna1.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "899539591075-2o3d045dboi69nrijn5rsliqqcapiiak.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.app.craftyBay"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:899539591075:android:3c8f024f0e8446b9864416",
+        "android_client_info": {
+          "package_name": "com.app.live_score_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "899539591075-l68rfjhmo8i9psd78l6q9f7rrrthuna1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANsqKSCB5CKx0mYuP83TBp0YJsK4dK7Fw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "899539591075-l68rfjhmo8i9psd78l6q9f7rrrthuna1.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "899539591075-2o3d045dboi69nrijn5rsliqqcapiiak.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.app.craftyBay"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:899539591075:android:d6f68ed57251d621864416",
+        "android_client_info": {
+          "package_name": "com.app.module_26_assignment"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "899539591075-l68rfjhmo8i9psd78l6q9f7rrrthuna1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANsqKSCB5CKx0mYuP83TBp0YJsK4dK7Fw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "899539591075-l68rfjhmo8i9psd78l6q9f7rrrthuna1.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "899539591075-2o3d045dboi69nrijn5rsliqqcapiiak.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.app.craftyBay"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:899539591075:android:8b63459a464cf7c6864416",
+        "android_client_info": {
+          "package_name": "com.app.module_33_assignment"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "899539591075-l68rfjhmo8i9psd78l6q9f7rrrthuna1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANsqKSCB5CKx0mYuP83TBp0YJsK4dK7Fw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "899539591075-l68rfjhmo8i9psd78l6q9f7rrrthuna1.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "899539591075-2o3d045dboi69nrijn5rsliqqcapiiak.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.app.craftyBay"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:899539591075:android:3cdc5f34661c18fe864416",
+        "android_client_info": {
+          "package_name": "com.app.patro_patri_khujun"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "899539591075-l68rfjhmo8i9psd78l6q9f7rrrthuna1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANsqKSCB5CKx0mYuP83TBp0YJsK4dK7Fw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "899539591075-l68rfjhmo8i9psd78l6q9f7rrrthuna1.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "899539591075-2o3d045dboi69nrijn5rsliqqcapiiak.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.app.craftyBay"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:899539591075:android:037586b991a1ac6b864416",
+        "android_client_info": {
+          "package_name": "com.app.ride_sharing"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "899539591075-l68rfjhmo8i9psd78l6q9f7rrrthuna1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANsqKSCB5CKx0mYuP83TBp0YJsK4dK7Fw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "899539591075-l68rfjhmo8i9psd78l6q9f7rrrthuna1.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "899539591075-2o3d045dboi69nrijn5rsliqqcapiiak.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.app.craftyBay"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:899539591075:android:4efa15abe0b5a016864416",
+        "android_client_info": {
+          "package_name": "com.example.assignmentcopy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "899539591075-l68rfjhmo8i9psd78l6q9f7rrrthuna1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANsqKSCB5CKx0mYuP83TBp0YJsK4dK7Fw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "899539591075-l68rfjhmo8i9psd78l6q9f7rrrthuna1.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "899539591075-2o3d045dboi69nrijn5rsliqqcapiiak.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.app.craftyBay"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:899539591075:android:db19f14aa7af5098864416",
+        "android_client_info": {
+          "package_name": "com.ostad.crafty_bay"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "899539591075-l68rfjhmo8i9psd78l6q9f7rrrthuna1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANsqKSCB5CKx0mYuP83TBp0YJsK4dK7Fw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "899539591075-l68rfjhmo8i9psd78l6q9f7rrrthuna1.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "899539591075-2o3d045dboi69nrijn5rsliqqcapiiak.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.app.craftyBay"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
