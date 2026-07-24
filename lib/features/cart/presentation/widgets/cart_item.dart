@@ -22,7 +22,20 @@ class CartItem extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Image.asset(AssetPaths.dummyPng, width: 100),
+            child: Image.network(
+              cartItemModel.product.photos.isNotEmpty
+                  ? cartItemModel.product.photos.first
+                  : '',
+              width: 100,
+              height: 100,
+              fit: BoxFit.cover,
+              errorBuilder: (_, _, _) => Image.asset(
+                AssetPaths.dummyPng,
+                width: 100,
+                height: 100,
+                fit: BoxFit.cover,
+              ),
+            ),
           ),
           Expanded(
             child: Padding(
