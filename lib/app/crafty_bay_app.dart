@@ -45,6 +45,7 @@ class _CraftyBayAppState extends State<CraftyBayApp> {
           return Consumer<ThemeModeProvider>(
             builder: (context, themeModeProvider, _) {
               return MaterialApp(
+                debugShowCheckedModeBanner: false,
                 navigatorKey: CraftyBayApp.navigatorKey,
                 title: 'Crafty Bay',
                 initialRoute: SplashScreen.name,
