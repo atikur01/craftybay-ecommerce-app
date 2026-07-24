@@ -30,38 +30,44 @@ class ProductCard extends StatelessWidget {
         child: SizedBox(
           width: 150,
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
                 width: 150,
-                height: 120,
+                height: 105,
                 decoration: BoxDecoration(
                   color: AppColors.themeColor.withAlpha(30),
-                  borderRadius: .only(
-                    topLeft: .circular(8),
-                    topRight: .circular(8),
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(8),
+                    topRight: Radius.circular(8),
                   ),
                 ),
                 child: Image.network(
                   getProductPhoto(productModel.photos),
-                  errorBuilder: (_, _, _) => Image.asset(AssetPaths.dummyPng),
+                  fit: BoxFit.cover,
+                  errorBuilder: (_, _, _) => Image.asset(
+                    AssetPaths.dummyPng,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
               Padding(
-                padding: const .all(8.0),
+                padding: const EdgeInsets.all(8.0),
                 child: Column(
                   spacing: 4,
-                  crossAxisAlignment: .start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       productModel.title,
-                      style: TextStyle(
-                        fontWeight: .w600,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w600,
                         color: Colors.black54,
                       ),
                     ),
-
                     Row(
-                      mainAxisAlignment: .spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
                           '\$${productModel.price}',
@@ -73,17 +79,17 @@ class ProductCard extends StatelessWidget {
                         Wrap(
                           spacing: 4,
                           children: [
-                            Icon(Icons.star, color: Colors.amber, size: 18),
+                            const Icon(Icons.star, color: Colors.amber, size: 18),
                             Text('${productModel.rating}'),
                           ],
                         ),
                         Container(
-                          padding: .all(2),
+                          padding: const EdgeInsets.all(2),
                           decoration: BoxDecoration(
-                            borderRadius: .circular(4),
+                            borderRadius: BorderRadius.circular(4),
                             color: AppColors.themeColor,
                           ),
-                          child: Icon(
+                          child: const Icon(
                             Icons.favorite_outline,
                             size: 18,
                             color: Colors.white,
@@ -94,7 +100,6 @@ class ProductCard extends StatelessWidget {
                   ],
                 ),
               ),
-              const SizedBox(height: 4),
             ],
           ),
         ),

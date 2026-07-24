@@ -1,4 +1,8 @@
 import 'package:crafty_bay/features/home/presentation/providers/home_sliders_provider.dart';
+import 'package:crafty_bay/features/home/presentation/providers/new_product_provider.dart';
+import 'package:crafty_bay/features/home/presentation/providers/popular_product_provider.dart';
+import 'package:crafty_bay/features/home/presentation/providers/special_product_provider.dart';
+import 'package:crafty_bay/features/shared/data/models/product_model.dart';
 import 'package:crafty_bay/features/shared/presentation/widgets/centered_progress_indicator.dart';
 import 'package:crafty_bay/features/shared/presentation/widgets/product_card.dart';
 import 'package:flutter/material.dart';
@@ -45,7 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
               ),
               SectionHeader(
-                headerText: 'Category',
+                headerText: 'All Categories',
                 onTapSeeAll: () {
                   context.read<MainNavHolderProvider>().navigateToCategory();
                 },
@@ -57,15 +61,89 @@ class _HomeScreenState extends State<HomeScreen> {
                   context.read<MainNavHolderProvider>().navigateToCategory();
                 },
               ),
-              SingleChildScrollView(
-                scrollDirection: .horizontal,
-                child: Row(
-                  // children: [1, 2, 3, 4, 5].map((e) => ProductCard()).toList(),
-                ),
+              Consumer<PopularProductProvider>(
+                builder: (context, popularProductProvider, _) {
+                  if (popularProductProvider.getPopularProductsInProgress) {
+                    return SizedBox(
+                      height: 180,
+                      child: CenteredProcessIndicator(),
+                    );
+                  }
+
+                  return _buildProductHorizontalList(
+                    popularProductProvider.productList,
+                  );
+                },
+              ),
+              SectionHeader(
+                headerText: 'Special',
+                onTapSeeAll: () {
+                  context.read<MainNavHolderProvider>().navigateToCategory();
+                },
+              ),
+              Consumer<SpecialProductProvider>(
+                builder: (context, specialProductProvider, _) {
+                  if (specialProductProvider.getSpecialProductsInProgress) {
+                    return SizedBox(
+                      height: 180,
+                      child: CenteredProcessIndicator(),
+                    );
+                  }
+
+                  return _buildProductHorizontalList(
+                    specialProductProvider.productList,
+                  );
+                },
+              ),
+              SectionHeader(
+                headerText: 'New',
+                onTapSeeAll: () {
+                  context.read<MainNavHolderProvider>().navigateToCategory();
+                },
+              ),
+              Consumer<NewProductProvider>(
+                builder: (context, newProductProvider, _) {
+                  if (newProductProvider.getNewProductsInProgress) {
+                    return SizedBox(
+                      height: 180,
+                      child: CenteredProcessIndicator(),
+                    );
+                  }
+
+                  return _buildProductHorizontalList(
+                    newProductProvider.productList,
+                  );
+                },
               ),
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildProductHorizontalList(List<ProductModel> productList) {
+    if (productList.isEmpty) {
+      return const SizedBox(
+        height: 60,
+        child: Center(
+          child: Text(
+            'No products available',
+            style: TextStyle(color: Colors.grey),
+          ),
+        ),
+      );
+    }
+
+    return SizedBox(
+      height: 190,
+      child: ListView.separated(
+        scrollDirection: Axis.horizontal,
+        itemCount: productList.length,
+        separatorBuilder: (context, index) => const SizedBox(width: 8),
+        itemBuilder: (context, index) {
+          return ProductCard(productModel: productList[index]);
+        },
       ),
     );
   }

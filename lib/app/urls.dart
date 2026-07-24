@@ -9,8 +9,25 @@ class Urls {
   static String categoryListUrl(int pageNo, int count) =>
       '$_baseUrl/categories?count=$count&page=$pageNo';
 
-  static String productListUrl(int currentPage, int productsPerPage) =>
-      '$_baseUrl/products?count=$productsPerPage&page=$currentPage';
+  static String productListUrl(
+    int currentPage,
+    int productsPerPage, {
+    String? tag,
+    String? remark,
+    String? categoryId,
+  }) {
+    String url = '$_baseUrl/products?count=$productsPerPage&page=$currentPage';
+    if (tag != null && tag.isNotEmpty) {
+      url += '&tag=$tag';
+    }
+    if (remark != null && remark.isNotEmpty) {
+      url += '&remark=$remark';
+    }
+    if (categoryId != null && categoryId.isNotEmpty) {
+      url += '&category=$categoryId';
+    }
+    return url;
+  }
 
   static String wishlistUrl(int currentPage, int productsPerPage) =>
       '$_baseUrl/wishlist?count=$productsPerPage&page=$currentPage';

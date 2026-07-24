@@ -3,6 +3,9 @@ import 'package:crafty_bay/features/cart/presentation/screens/cart_screen.dart';
 import 'package:crafty_bay/features/category/presentation/providers/category_list_provider.dart';
 import 'package:crafty_bay/features/category/presentation/screens/category_screen.dart';
 import 'package:crafty_bay/features/home/presentation/providers/home_sliders_provider.dart';
+import 'package:crafty_bay/features/home/presentation/providers/new_product_provider.dart';
+import 'package:crafty_bay/features/home/presentation/providers/popular_product_provider.dart';
+import 'package:crafty_bay/features/home/presentation/providers/special_product_provider.dart';
 import 'package:crafty_bay/features/home/presentation/screens/home_screen.dart';
 import 'package:crafty_bay/features/wishlist/presentation/screens/wishlist_screen.dart';
 import 'package:flutter/material.dart';
@@ -29,12 +32,18 @@ class _MainNavHolderScreenState extends State<MainNavHolderScreen> {
 
   final HomeSlidersProvider _homeSlidersProvider = HomeSlidersProvider();
   final CategoryListProvider _categoryListProvider = CategoryListProvider();
+  final PopularProductProvider _popularProductProvider = PopularProductProvider();
+  final SpecialProductProvider _specialProductProvider = SpecialProductProvider();
+  final NewProductProvider _newProductProvider = NewProductProvider();
 
   @override
   void initState() {
     super.initState();
     _homeSlidersProvider.getSliders();
     _categoryListProvider.getCategoryData();
+    _popularProductProvider.getPopularProducts();
+    _specialProductProvider.getSpecialProducts();
+    _newProductProvider.getNewProducts();
   }
 
   @override
@@ -43,6 +52,9 @@ class _MainNavHolderScreenState extends State<MainNavHolderScreen> {
       providers: [
         ChangeNotifierProvider.value(value: _homeSlidersProvider),
         ChangeNotifierProvider.value(value: _categoryListProvider),
+        ChangeNotifierProvider.value(value: _popularProductProvider),
+        ChangeNotifierProvider.value(value: _specialProductProvider),
+        ChangeNotifierProvider.value(value: _newProductProvider),
       ],
       child: Consumer<MainNavHolderProvider>(
         builder: (context, mainNavHolderProvider, _) {
