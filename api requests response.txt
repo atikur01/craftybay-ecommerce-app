@@ -1,0 +1,970 @@
+api requests and responses
+
+baseUrl: https://ecom-rs8e.onrender.com/api
+
+{{BASE}}/auth/signup
+
+{
+    "first_name": "Meskatul",
+    "last_name": "Islam",
+    "email": "meskatcse10@gmail.com",
+    "password": "123456",
+    "phone": "01754658781",
+    "city": "Chattogram"
+}
+
+{
+    "code": 201,
+    "status": "success",
+    "msg": "An OTP has been sent to your email address. Default OTP is 1234.",
+    "data": {
+        "first_name": "Meskatul",
+        "last_name": "Islam",
+        "email": "meskatcse10@gmail.com",
+        "email_verified": false,
+        "phone": "01754658781",
+        "phone_verified": false,
+        "avatar_url": null,
+        "city": "Chattogram",
+        "role": 0,
+        "_id": "6a62c8d7dab812661a6b8937"
+    }
+}
+
+{{BASE}}/auth/verify-otp
+
+{
+    "email":"meskatcse10@gmail.com",
+    "otp":"1234" // static
+}
+
+{
+    "code": 200,
+    "status": "success",
+    "msg": "Successfully verified email address",
+    "data": {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2YTYyYzhkN2RhYjgxMjY2MWE2Yjg5MzciLCJmaXJzdF9uYW1lIjoiTWVza2F0dWwiLCJsYXN0X25hbWUiOiJJc2xhbSIsImVtYWlsIjoibWVza2F0Y3NlMTBAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsInBob25lIjoiMDE3NTQ2NTg3ODEiLCJwaG9uZV92ZXJpZmllZCI6ZmFsc2UsImF2YXRhcl91cmwiOm51bGwsImNpdHkiOiJDaGF0dG9ncmFtIiwicm9sZSI6MCwiaWF0IjoxNzg0ODU4OTAwLCJleHAiOjE3ODU0NjM3MDB9.IDg7fsSGyhG8-T5iEdgEygkhCpfohnVwmZQmIRjhpmU",
+        "user": {
+            "_id": "6a62c8d7dab812661a6b8937",
+            "first_name": "Meskatul",
+            "last_name": "Islam",
+            "email": "meskatcse10@gmail.com",
+            "email_verified": true,
+            "phone": "01754658781",
+            "phone_verified": false,
+            "avatar_url": null,
+            "city": "Chattogram",
+            "role": 0
+        }
+    }
+}
+
+{{BASE}}/auth/resend-otp
+
+{
+    "email":"meskatcse10@gmail.com"
+}
+
+{
+    "code": 400,
+    "status": "failed",
+    "msg": "Already verified this email"
+}
+
+{{BASE}}/auth/login
+
+{
+    "email":"meskatcse10@gmail.com",
+    "password":"123456"
+}
+
+{
+    "code": 200,
+    "status": "success",
+    "msg": "Successfully logged in",
+    "data": {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2YTYyYzhkN2RhYjgxMjY2MWE2Yjg5MzciLCJmaXJzdF9uYW1lIjoiTWVza2F0dWwiLCJsYXN0X25hbWUiOiJJc2xhbSIsImVtYWlsIjoibWVza2F0Y3NlMTBAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsInBob25lIjoiMDE3NTQ2NTg3ODEiLCJwaG9uZV92ZXJpZmllZCI6ZmFsc2UsImF2YXRhcl91cmwiOm51bGwsImNpdHkiOiJDaGF0dG9ncmFtIiwicm9sZSI6MCwiaWF0IjoxNzg0ODU4OTY2LCJleHAiOjE3ODU0NjM3NjZ9.czMIU2gkOJo8eUHh7wGM9M6Vo1D_u72kDr9fsu98mSc",
+        "user": {
+            "_id": "6a62c8d7dab812661a6b8937",
+            "first_name": "Meskatul",
+            "last_name": "Islam",
+            "email": "meskatcse10@gmail.com",
+            "email_verified": true,
+            "phone": "01754658781",
+            "phone_verified": false,
+            "avatar_url": null,
+            "city": "Chattogram",
+            "role": 0
+        }
+    }
+}
+
+{{BASE}}/auth/profile
+
+headers:
+
+token: jwt token ftom sihnup and login
+
+{
+    "code": 200,
+    "status": "success",
+    "msg": "Successfully retrieved",
+    "data": {
+        "_id": "6a62c8d7dab812661a6b8937",
+        "first_name": "Meskatul",
+        "last_name": "Islam",
+        "email": "meskatcse10@gmail.com",
+        "email_verified": true,
+        "phone": "01754658781",
+        "phone_verified": false,
+        "avatar_url": null,
+        "city": "Chattogram",
+        "role": 0,
+        "createdAt": "2026-07-24T02:07:19.112Z",
+        "updatedAt": "2026-07-24T02:08:20.283Z",
+        "__v": 0
+    }
+}
+
+{{BASE}}/auth/profile
+
+{
+    "first_name": "Meskatul",
+    "last_name": "Islam",
+    "phone": "01754658781",
+    "city": "Chattogram"
+}
+
+{
+    "code": 200,
+    "status": "success",
+    "msg": "Successfully updated profile",
+    "data": {
+        "_id": "6a62c8d7dab812661a6b8937",
+        "first_name": "Meskatul",
+        "last_name": "Islam",
+        "email": "meskatcse10@gmail.com",
+        "email_verified": true,
+        "phone": "01754658781",
+        "phone_verified": false,
+        "avatar_url": null,
+        "city": "Chattogram",
+        "role": 0,
+        "createdAt": "2026-07-24T02:07:19.112Z",
+        "updatedAt": "2026-07-24T02:12:42.542Z",
+        "__v": 0
+    }
+}
+
+{{BASE}}/brands
+
+{
+    "code": 200,
+    "status": "success",
+    "msg": "Successfully retrieved data",
+    "data": {
+        "results": [
+            {
+                "_id": "67c7bf6e623a876bc4766ff1",
+                "title": "TUS",
+                "slug": "tus",
+                "description": "tus brand description",
+                "icon": "https://cdn.ostad.app/public/upload/2023-06-22T06-40-41.054Z-code-box-line.png",
+                "createdAt": "2025-03-05T03:05:18.357Z",
+                "updatedAt": "2025-03-05T03:05:18.357Z",
+                "__v": 0
+            },
+            {
+                "_id": "67a0c817c0e18b8fdbd65ff1",
+                "title": "Redmi",
+                "slug": "Redmi",
+                "description": "brand description",
+                "icon": "https://cdn.ostad.app/public/upload/2023-06-22T06-40-41.054Z-code-box-line.png",
+                "createdAt": "2025-02-03T13:43:51.964Z",
+                "updatedAt": "2025-02-03T13:43:51.964Z",
+                "__v": 0
+            },
+            {
+                "_id": "679a05182b11cd5ff18023e9",
+                "title": "Xiaomi",
+                "slug": "xiaomi",
+                "description": "brand description",
+                "icon": "https://cdn.ostad.app/public/upload/2023-06-22T06-40-41.054Z-code-box-line.png",
+                "createdAt": "2025-01-29T10:38:16.152Z",
+                "updatedAt": "2025-01-29T10:38:16.152Z",
+                "__v": 0
+            },
+            {
+                "_id": "6799d84bceaaf5d3413a0989",
+                "title": "Apple",
+                "slug": "apple",
+                "description": "brand description",
+                "icon": "https://cdn.ostad.app/public/upload/2023-06-22T06-40-41.054Z-code-box-line.png",
+                "createdAt": "2025-01-29T07:27:07.516Z",
+                "updatedAt": "2025-01-29T07:27:07.516Z",
+                "__v": 0
+            },
+            {
+                "_id": "6799d83dceaaf5d3413a0986",
+                "title": "Samsung",
+                "slug": "samsung",
+                "description": "brand description",
+                "icon": "https://cdn.ostad.app/public/upload/2023-06-22T06-40-41.054Z-code-box-line.png",
+                "createdAt": "2025-01-29T07:26:53.571Z",
+                "updatedAt": "2025-01-29T07:26:53.571Z",
+                "__v": 0
+            }
+        ],
+        "total": 5,
+        "first_page": null,
+        "previous": null,
+        "next": null,
+        "last_page": null
+    }
+}
+
+{{BASE}}/brands/:brand_id
+
+{
+    "code": 200,
+    "status": "success",
+    "msg": "Successfully retrieved data!",
+    "data": {
+        "_id": "679a05182b11cd5ff18023e9",
+        "title": "Xiaomi",
+        "slug": "xiaomi",
+        "description": "brand description",
+        "icon": "https://cdn.ostad.app/public/upload/2023-06-22T06-40-41.054Z-code-box-line.png",
+        "createdAt": "2025-01-29T10:38:16.152Z",
+        "updatedAt": "2025-01-29T10:38:16.152Z",
+        "__v": 0
+    }
+}
+
+{{BASE}}/categories?count=2
+
+{
+    "code": 200,
+    "status": "success",
+    "msg": "Successfully retrieved data",
+    "data": {
+        "results": [
+            {
+                "_id": "6812518cea40bfc6edc67356",
+                "title": "Apply",
+                "slug": "apply",
+                "description": "Apply Device",
+                "icon": "https://cdn-icons-png.flaticon.com/256/0/747.png",
+                "parent": null,
+                "createdAt": "2025-04-30T16:36:28.476Z",
+                "updatedAt": "2025-04-30T16:36:28.476Z",
+                "__v": 0
+            },
+            {
+                "_id": "680d1b45408c2a3e015a83de",
+                "title": "Books",
+                "slug": "books",
+                "description": "cat description",
+                "icon": "https://cdn-icons-png.flaticon.com/128/5832/5832416.png",
+                "parent": null,
+                "createdAt": "2025-04-26T17:43:33.557Z",
+                "updatedAt": "2025-04-26T17:43:33.557Z",
+                "__v": 0
+            }
+        ],
+        "total": 70,
+        "first_page": null,
+        "previous": null,
+        "next": 2,
+        "last_page": 35
+    }
+}
+
+{{BASE}}/categories/:cat_id
+
+{
+    "code": 200,
+    "status": "success",
+    "msg": "Successfully retrieved data!",
+    "data": {
+        "_id": "67a0c850c0e18b8fdbd65ff6",
+        "title": "New Category",
+        "slug": "new",
+        "description": "cat description",
+        "icon": "https://cdn.ostad.app/public/upload/2023-06-22T06-40-41.054Z-code-box-line.png",
+        "parent": null,
+        "createdAt": "2025-02-03T13:44:48.655Z",
+        "updatedAt": "2025-02-03T13:44:48.655Z",
+        "__v": 0
+    }
+}
+
+{{BASE}}/products?count=1&page=2&brand=67a0c817c0e18b8fdbd65ff1&category=6799c5d785b54cac3abec28f&tag=new
+{{BASE}}/products
+
+{
+    "code": 200,
+    "status": "success",
+    "msg": "Successfully retrieved data",
+    "data": {
+        "results": [
+            {
+                "_id": "681372b57aff1010848eea4c",
+                "title": "Mac mini m4",
+                "brand": {
+                    "_id": "6799d84bceaaf5d3413a0989",
+                    "title": "Apple",
+                    "slug": "apple",
+                    "icon": "https://cdn.ostad.app/public/upload/2023-06-22T06-40-41.054Z-code-box-line.png"
+                },
+                "categories": [
+                    {
+                        "_id": "6812518cea40bfc6edc67356",
+                        "title": "Apply",
+                        "slug": "apply",
+                        "icon": "https://cdn-icons-png.flaticon.com/256/0/747.png"
+                    }
+                ],
+                "slug": "macminim4",
+                "meta_description": null,
+                "description": "Mac mini m4 16GB Ram",
+                "photos": [
+                    "https://mcsolution.com.bd/wp-content/uploads/2024/10/mac-mini-m4-2024-price-in-Bangladesh-MC-Solution-BD-2.webp"
+                ],
+                "colors": [],
+                "sizes": [],
+                "tags": [],
+                "regular_price": null,
+                "current_price": 70000,
+                "quantity": 1,
+                "createdAt": "2025-05-01T13:10:13.522Z",
+                "updatedAt": "2025-05-01T13:10:13.522Z",
+                "in_cart": false,
+                "in_wishlist": false
+            },
+            {
+                "_id": "6812588dea40bfc6edc673ed",
+                "title": "সহজ ভাষায় অ্যালগরিদম",
+                "brand": {
+                    "_id": "6799d84bceaaf5d3413a0989",
+                    "title": "Apple",
+                    "slug": "apple",
+                    "icon": "https://cdn.ostad.app/public/upload/2023-06-22T06-40-41.054Z-code-box-line.png"
+                },
+                "categories": [
+                    {
+                        "_id": "680d1b45408c2a3e015a83de",
+                        "title": "Books",
+                        "slug": "books",
+                        "icon": "https://cdn-icons-png.flaticon.com/128/5832/5832416.png"
+                    }
+                ],
+                "slug": "sohojvasaialgorithom",
+                "meta_description": null,
+                "description": "এক কথায় বলতে হলে, একদম বিগিনারদের জন্য এক অসাধারণ খণ্ডাংশ এই বইটি। যাদের প্রোগ্রামিং নিয়ে ন্যূনতম জ্ঞান আছে, তারাও অনায়াসে এই বইয়ের আদি-অন্ত উদ্ধার করে ফেলতে পারবেন। নো ডাউট! একটি সত্যি কথা কি জানেন? গুগোল-ফেসবুক যারা বানিয়েছেন, তারাও কিন্তু একটা সময় আমার-আপনার মতোই একজন জিরো লেভেলের প্রোগ্রামার ছিল। প্রোগ্রামিং জানার জন্য কম্পিউটারের খুঁটিনাটি সম্পর্কে যে খুব আহামরি কিছু জানা লাগে, এই কথাটিই ভুল। শুনে অবাক হবার কিছু নেই। ব্যাপারটা একদমই সত্যি। তবে আপনার থাকা চাই প্রোগ্রামিংয়ের প্রতি অকৃত্রিম ভালোবাসা আর নিজেকে সময় দেওয়া। প্রোগ্রামিংয়ে ‘শুরু থেকে গুরু’ তখনই হতে পারবেন যখন আপনি প্রোগ্রামিংয়ের পেছনে ‘লেগে’ থাকবেন। এই ‘লেগে থাকা’-টাই আপনাকে গুগোল-ফেসবুক থেকেও আরো অনেক বেশি ওপরে নিয়ে যেতে সক্ষম। তবে অ্যালগরিদমের কথা এলেই সবাই পাশ কাটিয়ে চলে যেতে চান। এই বইটি লেখার প্রধান উদ্দেশ্যই ছিল এই পালিয়ে বেড়ানো মানুষগুলোর মনে অ্যালগরিদমের ভালোবাসা পৌঁছিয়ে দেওয়া। বানিয়ে বলছি না; বইটি শুরু করুন— কিছুক্ষণ পর আপনি নিজেই নিজেকে বলবেন, ‘একটু সময় দিলেই আমি পারব!",
+                "photos": [
+                    "https://ds.rokomari.store/rokomari110/ProductNew20190903/260X372/Sohoj_Bhashay_Algorithm-Ihsanul_Islam-ab6e3-227461.jpg"
+                ],
+                "colors": [],
+                "sizes": [],
+                "tags": [],
+                "regular_price": null,
+                "current_price": 258,
+                "quantity": 1,
+                "createdAt": "2025-04-30T17:06:21.385Z",
+                "updatedAt": "2025-04-30T17:06:21.385Z",
+                "in_cart": false,
+                "in_wishlist": false
+            },
+            {
+                "_id": "6812577dea40bfc6edc673e3",
+                "title": "জাভা প্রোগ্রামিং",
+                "brand": {
+                    "_id": "6799d84bceaaf5d3413a0989",
+                    "title": "Apple",
+                    "slug": "apple",
+                    "icon": "https://cdn.ostad.app/public/upload/2023-06-22T06-40-41.054Z-code-box-line.png"
+                },
+                "categories": [
+                    {
+                        "_id": "680d1b45408c2a3e015a83de",
+                        "title": "Books",
+                        "slug": "books",
+                        "icon": "https://cdn-icons-png.flaticon.com/128/5832/5832416.png"
+                    }
+                ],
+                "slug": "javaprogramming",
+                "meta_description": null,
+                "description": "তৃতীয় দশকে পদার্পণ করেছে জাভা। ১৯৯৫ সালে যাত্রা শুরু করে গত ২২ বছরে ক্রমাগত উন্নতি, প্রসার ও জনপ্রিয়তা অর্জন করেছে অত্যন্ত জনপ্রিয় এই প্রোগ্রামিং ভাষা। মিথষ্ক্রিয় ইন্টারনেট তৈরিতে নেতৃত্বদান ছাড়াও অন্য ইন্টারনেট প্রোগ্রামিংয়ের ভাষাগুলোকেও ক্রমাগত চ্যালেঞ্জের মুখে ফেলেছে জাভা। এতে ইন্টারনেট প্রোগ্রামিং ভাষাগুলোর মধ্যে প্রতিযোগিতার সৃষ্টি হয়েছে; ফলে জাভাসহ প্রতিটি ভাষার কম্পাইলারেই সন্নিবেশিত হয়েছে বিভিন্ন প্রযুক্তি, লাইব্রেরি, ফ্রেমওয়ার্ক ইত্যাদি। গত দু’দশক ধরে প্রকৌশল-বান্ধব প্রযুক্তি উন্নয়নেও নেতৃত্ব দিয়েছে জাভা, তাই আজও ওয়েব প্রোগ্রামিং বা ওয়েব অ্যাপ্লিকেশন তৈরিতে ডেভেলপারের প্রথম পছন্দের ভাষা জাভা।",
+                "photos": [
+                    "https://wafilife-media.wafilife.com/uploads/2020/01/java-250x341.png"
+                ],
+                "colors": [],
+                "sizes": [],
+                "tags": [],
+                "regular_price": null,
+                "current_price": 706,
+                "quantity": 1,
+                "createdAt": "2025-04-30T17:01:49.861Z",
+                "updatedAt": "2025-04-30T17:01:49.861Z",
+                "in_cart": false,
+                "in_wishlist": false
+            },
+            {
+                "_id": "681256e1ea40bfc6edc673d7",
+                "title": "প্রোগ্রামিং কনটেস্ট ডেটা স্ট্রাকচার ও অ্যালগরিদম",
+                "brand": {
+                    "_id": "6799d84bceaaf5d3413a0989",
+                    "title": "Apple",
+                    "slug": "apple",
+                    "icon": "https://cdn.ostad.app/public/upload/2023-06-22T06-40-41.054Z-code-box-line.png"
+                },
+                "categories": [
+                    {
+                        "_id": "680d1b45408c2a3e015a83de",
+                        "title": "Books",
+                        "slug": "books",
+                        "icon": "https://cdn-icons-png.flaticon.com/128/5832/5832416.png"
+                    }
+                ],
+                "slug": "programmingcontrxt",
+                "meta_description": null,
+                "description": "অনেকে মনে করতে পারে যে প্রোগ্রামিং প্রতিযোগিতায় যারা ভালো করেছে তারা, Google, Facebook, Microsoft এর মতো  বড় বড় কোম্পানিতে চাকরি করে, অনেক অনেক টাকা কামায়। কিন্তু সত্যি বলতে কি দিনের শেষে টাকাই সব কথা নয়। তোমার মনের সুখ কিন্তু অনেক বড় জিনিস।  কি বেশী আধ্যাত্মিক হয়ে গেল ?যাই হোক, তুমি আনন্দ নিয়ে প্রোগ্রামিং করবে, তাহলেই দেখবে তুমি ভাল করছ, তখন Google, Facebook, Microsoft এর মতো কোম্পানি এমনিই তোমাকে নিয়ে  যাবে। বা ওই সব কোম্পানি কেন? হয়তো তুমি নিজেই একটা Google প্রতিষ্ঠা করে ফেলবে একদিন। অথবা তুমি হয়তো নিজেই এমন একটা ল্যাঙ্গুয়েজ বানিয়ে ফেলবে যেটা সারা বিশ্বের মানুষ ব্যবহার করবে। এর মধ্যে অন্যরকম মজা আছে।এই অপার্থিব আনন্দ যারা পেত চাও তাদের জন্য এই প্রোগ্রামিং প্রতিযোগিতা।বইটিতে প্রোগ্রামিং প্রতিযোগিতায় হাতেখড়ি, C ঝালাই, গণিত, সম্ভাব্যতা, সর্টিং, বাইনারি সার্চ, টারনারি সার্চ, ব্যাকট্রাকিং, ডেটা স্ট্রাকচার, লিঙ্ক লিস্ট, স্ট্যাক, গ্রীড টেকনিক, ডায়নামিক প্রোগ্রামিং , স্ট্রিং ইত্যাদি বিষয়গুলো নিয়ে প্রয়োজনীয় কোড সহ আলোচনা করা হয়েছে।",
+                "photos": [
+                    "https://wafilife-media.wafilife.com/uploads/2019/11/%E0%A6%AA%E0%A7%8D%E0%A6%B0%E0%A7%8B%E0%A6%97%E0%A7%8D%E0%A6%B0%E0%A6%BE%E0%A6%AE%E0%A6%BF%E0%A6%82-%E0%A6%95%E0%A6%A8%E0%A6%9F%E0%A7%87%E0%A6%B8%E0%A7%8D%E0%A6%9F-%E0%A6%A1%E0%A7%87%E0%A6%9F%E0%A6%BE-%E0%A6%B8%E0%A7%8D%E0%A6%9F%E0%A7%8D%E0%A6%B0%E0%A6%BE%E0%A6%95%E0%A6%9A%E0%A6%BE%E0%A6%B0-%E0%A6%93-%E0%A6%85%E0%A7%8D%E0%A6%AF%E0%A6%BE%E0%A6%B2%E0%A6%97%E0%A6%B0%E0%A6%BF%E0%A6%A6%E0%A6%AE-%E0%A6%AA%E0%A7%87%E0%A6%AA%E0%A6%BE%E0%A6%B0%E0%A6%AC%E0%A7%8D%E0%A6%AF%E0%A6%BE%E0%A6%95-250x348.png"
+                ],
+                "colors": [],
+                "sizes": [],
+                "tags": [],
+                "regular_price": null,
+                "current_price": 398,
+                "quantity": 1,
+                "createdAt": "2025-04-30T16:59:13.120Z",
+                "updatedAt": "2025-04-30T16:59:13.120Z",
+                "in_cart": false,
+                "in_wishlist": false
+            },
+            {
+                "_id": "681255e2ea40bfc6edc673c9",
+                "title": "সফটওয়্যার ইঞ্জিনিয়ারিং আলাপ",
+                "brand": {
+                    "_id": "6799d84bceaaf5d3413a0989",
+                    "title": "Apple",
+                    "slug": "apple",
+                    "icon": "https://cdn.ostad.app/public/upload/2023-06-22T06-40-41.054Z-code-box-line.png"
+                },
+                "categories": [
+                    {
+                        "_id": "680d1b45408c2a3e015a83de",
+                        "title": "Books",
+                        "slug": "books",
+                        "icon": "https://cdn-icons-png.flaticon.com/128/5832/5832416.png"
+                    }
+                ],
+                "slug": "softwarealap",
+                "meta_description": null,
+                "description": "সফটওয়্যার ইঞ্জিনিয়ারিং এ ক্যারিয়ার শুরু করা এখন তেমন একটা কঠিন না। কিন্তু ক্যারিয়ার শুরু করার পর সামনে বেশ কিছু চ্যালেঞ্জ আসে। কী শিখবো, কিভাবে শিখবো, কিভাবে ক্যারিয়ারে আরো ভালো করতে পারবো, কিভাবে সময়ের সাথে এই প্রতিযোগিতাপূর্ণ সেক্টরে টিকে থাকতে পারবো – এই বিষয়গুলো আমাদের অনেকেরই জিজ্ঞাসা। ল্যাঙ্গুয়েজ, ফ্রেমওয়ার্ক, টুল শেখার জন্য অনেক টিউটোরিয়াল, কোর্স আছে। কিন্তু সফটওয়্যার ইঞ্জিনিয়ারিং ক্যারিয়ারে সফলতার জন্য কেবল এগুলো শেখাই যথেষ্ট না। এর সাথে দরকার ইঞ্জিনিয়ারিং মাইন্ডসেট, সফট স্কিলস, লার্নিং টেকনিক, ক্যারিয়ারের ব্যাপারে সচেতনতা ইত্যাদি। দুঃখজনকভাবে এই দরকারী বিষয়গুলো নিয়ে তেমন একটা আলাপ হয় না বললেই চলে। অনেকে ক্যারিয়ারের বিভিন্ন পর্যায়ে বাস্তব অভিজ্ঞতা থেকে এবং ‘ঠেকে’ এই বিষয়গুলো আয়ত্ত করেন। অথচ ক্যারিয়ারের শুরুর দিকেই এই বিষয়গুলো জানা থাকলে আপনি ক্যারিয়ারে অন্যদের চেয়ে এগিয়ে থাকবেন অনেকদূর। ইংরেজিতে এসব টপিকে বেশ কিছু বই থাকলেও বাংলায় সম্ভবত এটাই প্রথম। কিভাবে নতুন নতুন টুল-টেকনোলজির চক্করে নিজেকে আপ-টু-ডেট রাখবেন, কিভাবে সফটওয়্যার ইঞ্জিনিয়ারিংয়ের নিত্যদিনের চ্যালেঞ্জগুলো মোকাবেলা করবেন, কোন কোন বিষয়গুলো আপনাকে ক্যারিয়ার বুস্টে সাহায্য করবে – এরকম ভিন্ন ভিন্ন টপিকের ২০ টি লেখার সংকলন এই বইটি।একজন ভালো সফটওয়্যার ইঞ্জিনিয়ার হতে, জব মার্কেটের প্রতিযোগিতায় টিকে থাকতে এবং সর্বোপরি আপনার ক্যারিয়ারে আরো এগিয়ে যেতে এই বইটি টনিকের মত কাজ করবে বলে আমাদের বিশ্বাস।",
+                "photos": [
+                    "https://wafilife-media.wafilife.com/uploads/2023/05/Software-Engineering-Talk-Cover-01-250x370.jpg"
+                ],
+                "colors": [],
+                "sizes": [],
+                "tags": [],
+                "regular_price": null,
+                "current_price": 252,
+                "quantity": 1,
+                "createdAt": "2025-04-30T16:54:58.678Z",
+                "updatedAt": "2025-04-30T16:55:59.930Z",
+                "in_cart": false,
+                "in_wishlist": false
+            },
+            {
+                "_id": "6812554eea40bfc6edc673c1",
+                "title": "রিচার্জ ইয়োর ডাউন ব্যাটারি",
+                "brand": {
+                    "_id": "6799d84bceaaf5d3413a0989",
+                    "title": "Apple",
+                    "slug": "apple",
+                    "icon": "https://cdn.ostad.app/public/upload/2023-06-22T06-40-41.054Z-code-box-line.png"
+                },
+                "categories": [
+                    {
+                        "_id": "680d1b45408c2a3e015a83de",
+                        "title": "Books",
+                        "slug": "books",
+                        "icon": "https://cdn-icons-png.flaticon.com/128/5832/5832416.png"
+                    }
+                ],
+                "slug": "rechargeyourbattary",
+                "meta_description": null,
+                "description": "যুগের সাথে তাল মিলিয়ে এগিয়ে আছে যারা, তাদেরকে আরেক ধাপ এগিয়ে নিতে নেওয়া হচ্ছে নানান উদ্যোগ। কিন্তু যারা একটু পিছিয়ে আছে, ভালো অবস্থানে থেকেও কোনো কারণে খেই হারিয়ে ফেলেছে, তারা কি হতাশ হয়ে বসে থাকবে?না! আমাদের হতাশা কাটিয়ে উঠতে, ডাউন হয়ে যাওয়া জীবন ব্যাটারিকে পুনরায় উজ্জীবিত করার জন্যই বেশ কিছু বেস্ট সেলিং বইয়ের লেখক ও জনপ্রিয় মোটিভেশনাল স্পিকার ঝংকার মাহবুব লিখে ফেলেছেন আরেকটি অনবদ্য বই। দেশের লাখ লাখ পিছিয়ে পড়া তরুণ, যারা ঘুরে দাঁড়াতে চায়, তাদের জন্য এই বই। আবার যারা হতাশ হয়ে ভেঙে পড়েছে, তাদেরও এই বই বিদ্যুৎস্পৃষ্টের মতো চমকে দিতে পারে। তারাও পাবে বইটিতে সামনে এগিয়ে যাওয়ার প্রণোদনা। যারা সফল সবসময় তাদের জন্যও সমান কাজে লাগবে এই বই, কারণ ব্যাটারি তো যে কোনো সময় ডাউন হতেই পারে।",
+                "photos": [
+                    "https://wafilife-media.wafilife.com/uploads/2020/11/%E0%A6%B0%E0%A6%BF%E0%A6%9A%E0%A6%BE%E0%A6%B0%E0%A7%8D%E0%A6%9C-%E0%A6%87%E0%A7%9F%E0%A7%8B%E0%A6%B0-%E0%A6%A1%E0%A6%BE%E0%A6%89%E0%A6%A8-%E0%A6%AC%E0%A7%8D%E0%A6%AF%E0%A6%BE%E0%A6%9F%E0%A6%BE%E0%A6%B0%E0%A6%BF-250x386.jpg"
+                ],
+                "colors": [],
+                "sizes": [],
+                "tags": [],
+                "regular_price": null,
+                "current_price": 240,
+                "quantity": 1,
+                "createdAt": "2025-04-30T16:52:30.866Z",
+                "updatedAt": "2025-04-30T16:52:30.866Z",
+                "in_cart": false,
+                "in_wishlist": false
+            },
+            {
+                "_id": "680d1cf8408c2a3e015a83e7",
+                "title": "গল্পের ক্যানভাসে জীবন",
+                "brand": {
+                    "_id": "6799d84bceaaf5d3413a0989",
+                    "title": "Apple",
+                    "slug": "apple",
+                    "icon": "https://cdn.ostad.app/public/upload/2023-06-22T06-40-41.054Z-code-box-line.png"
+                },
+                "categories": [
+                    {
+                        "_id": "680d1b45408c2a3e015a83de",
+                        "title": "Books",
+                        "slug": "books",
+                        "icon": "https://cdn-icons-png.flaticon.com/128/5832/5832416.png"
+                    }
+                ],
+                "slug": "golpercanvache",
+                "meta_description": null,
+                "description": "ভীষণ রকম গল্পময় মানুষের জীবন৷ শৈশব, কৈশোর, যৌবন, বার্ধক্য—জীবনের প্রতিটি পরতে পরতে থাকে নানান বলা না-বলা গল্প। জীবন যেহেতু গল্পময়, তাই মানুষকে কাগজে-কালিতে লেখা গল্পগুলো খুব সহজেই প্রভাবিত করতে পারে। কখনো কখনো এই গল্পগুলো হয়ে ওঠে বাস্তবতা থেকে কঠিন, কখনো-বা কল্পনার চেয়েও মধুর! মাঝে মাঝে মনে হয়, আমাদের জীবনটা গল্পের বাঁকে বাঁকে এগিয়ে চলেছে অনন্তকালের পথে। এ-জীবন কেবলই জীবন নয়, এ যেন ‘গল্পের ক্যানভাসে জীবন’ কাল্পনিক হলেও সত্য এমন সব জীবনগল্প নিয়ে সাজানো গল্পগ্রন্থ—‘গল্পের ক্যানভাসে জীবন",
+                "photos": [
+                    "https://wafilife-media.wafilife.com/uploads/2024/02/%E0%A6%97%E0%A6%B2%E0%A7%8D%E0%A6%AA%E0%A7%87%E0%A6%B0-%E0%A6%95%E0%A7%8D%E0%A6%AF%E0%A6%BE%E0%A6%A8%E0%A6%AD%E0%A6%BE%E0%A6%B8%E0%A7%87-%E0%A6%9C%E0%A7%80%E0%A6%AC%E0%A6%A8-250x386.png"
+                ],
+                "colors": [],
+                "sizes": [],
+                "tags": [],
+                "regular_price": null,
+                "current_price": 180,
+                "quantity": 1,
+                "createdAt": "2025-04-26T17:50:48.328Z",
+                "updatedAt": "2025-04-26T17:50:48.328Z",
+                "in_cart": false,
+                "in_wishlist": false
+            },
+            {
+                "_id": "67d714a7623818b018e22fc5",
+                "title": "title",
+                "brand": {
+                    "_id": "67c7bf6e623a876bc4766ff1",
+                    "title": "TUS",
+                    "slug": "tus",
+                    "icon": "https://cdn.ostad.app/public/upload/2023-06-22T06-40-41.054Z-code-box-line.png"
+                },
+                "categories": [
+                    {
+                        "_id": "67c7bec4623a876bc4766fea",
+                        "title": "New Arrival",
+                        "slug": "new-arr",
+                        "icon": "https://cdn.ostad.app/public/upload/2023-06-22T06-40-41.054Z-code-box-line.png"
+                    },
+                    {
+                        "_id": "67cd31ef5d6dbf362453bf49",
+                        "title": "Book",
+                        "slug": "new-  cas",
+                        "icon": "https://cdn.ostad.app/public/upload/2023-06-22T06-40-41.054Z-code-box-line.png"
+                    }
+                ],
+                "slug": "slug",
+                "meta_description": null,
+                "description": "desc",
+                "photos": [],
+                "colors": [],
+                "sizes": [],
+                "tags": [],
+                "regular_price": null,
+                "current_price": 50,
+                "quantity": 1,
+                "createdAt": "2025-03-16T18:12:55.694Z",
+                "updatedAt": "2025-03-16T18:12:55.694Z",
+                "in_cart": false,
+                "in_wishlist": false
+            },
+            {
+                "_id": "67d6fa331431779e023e5eef",
+                "title": "sagfdgsh",
+                "brand": {
+                    "_id": "67c7bf6e623a876bc4766ff1",
+                    "title": "TUS",
+                    "slug": "tus",
+                    "icon": "https://cdn.ostad.app/public/upload/2023-06-22T06-40-41.054Z-code-box-line.png"
+                },
+                "categories": [
+                    {
+                        "_id": "67cd32265d6dbf362453bf4f",
+                        "title": "Book",
+                        "slug": "newddd-casddd",
+                        "icon": "https://cdn.ostad.app/public/upload/2023-06-22T06-40-41.054Z-code-box-line.png"
+                    },
+                    {
+                        "_id": "67cd33432e43d538695ea4bc",
+                        "title": "New Category",
+                        "slug": "new-qqqcas",
+                        "icon": "https://cdn.ostad.app/public/upload/2023-06-22T06-40-41.054Z-code-box-line.png"
+                    }
+                ],
+                "slug": "safws",
+                "meta_description": null,
+                "description": "sdg",
+                "photos": [],
+                "colors": [],
+                "sizes": [],
+                "tags": [],
+                "regular_price": null,
+                "current_price": 54,
+                "quantity": 1,
+                "createdAt": "2025-03-16T16:20:03.218Z",
+                "updatedAt": "2025-03-16T16:20:37.386Z",
+                "in_cart": false,
+                "in_wishlist": false
+            },
+            {
+                "_id": "67c82f9532792bb7f4c68e20",
+                "title": "TUS Product 13",
+                "brand": {
+                    "_id": "67c7bf6e623a876bc4766ff1",
+                    "title": "TUS",
+                    "slug": "tus",
+                    "icon": "https://cdn.ostad.app/public/upload/2023-06-22T06-40-41.054Z-code-box-line.png"
+                },
+                "categories": [
+                    {
+                        "_id": "67c35b395e8a445235de197e",
+                        "title": "Special",
+                        "slug": "special",
+                        "icon": "https://img.pikbest.com/origin/09/23/73/86XpIkbEsTVRE.png!sw800"
+                    }
+                ],
+                "slug": "tus-product-13",
+                "meta_description": null,
+                "description": "cat description fgjh fgjh fj fj",
+                "photos": [
+                    "https://opsg-img-cdn-gl.heytapimg.com/epb/202501/26/KL3ZNGfgHubc8642.jpg",
+                    "https://opsg-img-cdn-gl.heytapimg.com/epb/202501/02/zDc3USjyFOIYnO3M.jpg",
+                    "https://opsg-img-cdn-gl.heytapimg.com/epb/202412/19/P9iQuoBXP9MSFAG2.png",
+                    "https://opsg-img-cdn-gl.heytapimg.com/epb/202412/19/9xpwKzGQvvCpSZd6.png",
+                    "https://opsg-img-cdn-gl.heytapimg.com/epb/202412/19/8GSbdJcv5EIXej07.png",
+                    "https://opsg-img-cdn-gl.heytapimg.com/epb/202412/19/aHKkrDjJY0AWXDLm.png"
+                ],
+                "colors": [
+                    "Red",
+                    "Blue",
+                    "Green",
+                    "Purple",
+                    "Gold"
+                ],
+                "sizes": [
+                    "XS",
+                    "S",
+                    "L",
+                    "XL",
+                    "XXL"
+                ],
+                "tags": [
+                    "new",
+                    "old",
+                    "medium",
+                    "high",
+                    "low"
+                ],
+                "regular_price": 18000,
+                "current_price": 12000,
+                "quantity": 1,
+                "createdAt": "2025-03-05T11:03:49.392Z",
+                "updatedAt": "2025-03-16T16:09:04.706Z",
+                "in_cart": false,
+                "in_wishlist": false
+            }
+        ],
+        "total": 75,
+        "first_page": null,
+        "previous": null,
+        "next": 2,
+        "last_page": 8
+    }
+}
+
+{{BASE}}/products/id/:product_id
+{
+    "code": 200,
+    "status": "success",
+    "msg": "Successfully retrieved data!",
+    "data": {
+        "_id": "681372b57aff1010848eea4c",
+        "title": "Mac mini m4",
+        "brand": {
+            "_id": "6799d84bceaaf5d3413a0989",
+            "title": "Apple",
+            "slug": "apple",
+            "icon": "https://cdn.ostad.app/public/upload/2023-06-22T06-40-41.054Z-code-box-line.png"
+        },
+        "categories": [
+            {
+                "_id": "6812518cea40bfc6edc67356",
+                "title": "Apply",
+                "slug": "apply",
+                "icon": "https://cdn-icons-png.flaticon.com/256/0/747.png"
+            }
+        ],
+        "slug": "macminim4",
+        "meta_description": null,
+        "description": "Mac mini m4 16GB Ram",
+        "photos": [
+            "https://mcsolution.com.bd/wp-content/uploads/2024/10/mac-mini-m4-2024-price-in-Bangladesh-MC-Solution-BD-2.webp"
+        ],
+        "colors": [],
+        "sizes": [],
+        "tags": [],
+        "regular_price": null,
+        "current_price": 70000,
+        "quantity": 1,
+        "createdAt": "2025-05-01T13:10:13.522Z",
+        "updatedAt": "2025-05-01T13:10:13.522Z",
+        "__v": 0
+    }
+}
+
+{{BASE}}/reviews?product=679a06ad8ddf463f174f0df6
+{
+    "code": 200,
+    "status": "success",
+    "msg": "Successfully retrieved data",
+    "data": {
+        "results": [],
+        "total": 0,
+        "first_page": null,
+        "previous": null,
+        "next": null,
+        "last_page": 0
+    }
+}
+
+{{BASE}}/review
+{
+    "product": "679a06ad8ddf463f174f0df6",
+    "comment":"test review",
+    "rating":"4"
+}
+{
+    "code": 201,
+    "status": "success",
+    "msg": "Successfully added review",
+    "data": {
+        "product": "679a06ad8ddf463f174f0df6",
+        "user": "6a62c8d7dab812661a6b8937",
+        "rating": 4,
+        "comment": "test review",
+        "_id": "6a62cba9dab812661a6b896c",
+        "createdAt": "2026-07-24T02:19:21.508Z",
+        "updatedAt": "2026-07-24T02:19:21.508Z",
+        "__v": 0
+    }
+}
+
+{{BASE}}/reviews/:review_id
+{
+    "comment":"test review",
+    "rating":"4"
+}
+{
+    "code": 200,
+    "status": "success",
+    "msg": "Successfully updated review",
+    "data": {
+        "_id": "6a62cba9dab812661a6b896c",
+        "product": "679a06ad8ddf463f174f0df6",
+        "user": "6a62c8d7dab812661a6b8937",
+        "rating": 4,
+        "comment": "test review",
+        "createdAt": "2026-07-24T02:19:21.508Z",
+        "updatedAt": "2026-07-24T02:20:32.768Z",
+        "__v": 0
+    }
+}
+
+{{BASE}}/cart
+{
+    "code": 200,
+    "status": "success",
+    "msg": "Successfully retrieved data",
+    "data": {
+        "results": [
+            {
+                "_id": "6a62cc27dab812661a6b897e",
+                "product": {
+                    "_id": "679a06ad8ddf463f174f0df6",
+                    "title": "New product 3",
+                    "brand": "6799d84bceaaf5d3413a0989",
+                    "categories": [
+                        "6799d7b8a164eec94185022f",
+                        "6799c5d785b54cac3abec28f"
+                    ],
+                    "slug": "new-productds",
+                    "meta_description": null,
+                    "description": "cat description fgjh fgjh fj fj",
+                    "photos": [],
+                    "colors": [],
+                    "sizes": [],
+                    "tags": [],
+                    "regular_price": null,
+                    "current_price": 12000,
+                    "quantity": 1,
+                    "createdAt": "2025-01-29T10:45:01.225Z",
+                    "updatedAt": "2025-01-29T10:45:01.225Z",
+                    "__v": 0
+                },
+                "user": "6a62c8d7dab812661a6b8937",
+                "quantity": 1,
+                "color": null,
+                "size": null,
+                "createdAt": "2026-07-24T02:21:27.285Z",
+                "updatedAt": "2026-07-24T02:21:27.285Z",
+                "__v": 0
+            }
+        ],
+        "total": 1
+    }
+}
+
+{{BASE}}/cart
+
+{
+   "product":"679a06ad8ddf463f174f0df6"
+}
+
+{
+    "code": 201,
+    "status": "success",
+    "msg": "Successfully added!",
+    "data": {
+        "product": "679a06ad8ddf463f174f0df6",
+        "user": "6a62c8d7dab812661a6b8937",
+        "quantity": 1,
+        "color": null,
+        "size": null,
+        "_id": "6a62cc27dab812661a6b897e",
+        "createdAt": "2026-07-24T02:21:27.285Z",
+        "updatedAt": "2026-07-24T02:21:27.285Z",
+        "__v": 0
+    }
+}
+
+{{BASE}}/cart/:cart_item_id
+{
+    "quantity": "2"
+}
+{
+    "code": 200,
+    "status": "success",
+    "msg": "Successfully updated cart item"
+}
+
+delete {{BASE}}/cart/:cart_item_id
+
+{{BASE}}/wishlist?count=2
+
+{
+    "code": 200,
+    "status": "success",
+    "msg": "Successfully retrieved data",
+    "data": {
+        "results": [],
+        "total": 0,
+        "first_page": null,
+        "previous": null,
+        "next": null,
+        "last_page": 0
+    }
+}
+
+{{BASE}}/wishlist
+
+{
+   "product":"6799db1b189b5fbbe81cc3a5"
+}
+
+{
+    "code": 201,
+    "status": "success",
+    "msg": "Successfully added!",
+    "data": {
+        "product": "6799db1b189b5fbbe81cc3a5",
+        "user": "6a62c8d7dab812661a6b8937",
+        "_id": "6a62ccbbdab812661a6b8991",
+        "createdAt": "2026-07-24T02:23:55.120Z",
+        "updatedAt": "2026-07-24T02:23:55.120Z",
+        "__v": 0
+    }
+}
+
+delete
+
+{{BASE}}/wishlist/:wishlist_item_id
+
+{{BASE}}/slides
+
+{
+    "code": 200,
+    "status": "success",
+    "msg": "Successfully retrieved data",
+    "data": {
+        "results": [
+            {
+                "_id": "680d16ca408c2a3e015a83b0",
+                "photo_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbpR5UwmiL1npP790Q-3rPsAm18AMvUk180ixGC44Kwy-eCMC_OwE15SpK3PHSeqRuTqk&usqp=CAU",
+                "description": "Iphone 16 pro",
+                "product": null,
+                "brand": "679a05182b11cd5ff18023e9",
+                "category": null,
+                "createdAt": "2025-04-26T17:24:26.803Z",
+                "updatedAt": "2025-04-26T17:24:26.803Z",
+                "__v": 0
+            },
+            {
+                "_id": "680d1632408c2a3e015a83aa",
+                "photo_url": "https://cdn.dribbble.com/userupload/14251223/file/original-ccf454426d2b7842dfdcd6917528301d.jpg?resize=2048x1152&vertical=center",
+                "description": "Solid T shirt",
+                "product": null,
+                "brand": "679a05182b11cd5ff18023e9",
+                "category": null,
+                "createdAt": "2025-04-26T17:21:54.663Z",
+                "updatedAt": "2025-04-26T17:21:54.663Z",
+                "__v": 0
+            },
+            {
+                "_id": "680d15e7408c2a3e015a83a8",
+                "photo_url": "https://mir-s3-cdn-cf.behance.net/project_modules/fs/2430cf179304555.64f75e9114e97.jpg",
+                "description": "T shirt",
+                "product": null,
+                "brand": "679a05182b11cd5ff18023e9",
+                "category": null,
+                "createdAt": "2025-04-26T17:20:39.898Z",
+                "updatedAt": "2025-04-26T17:20:39.898Z",
+                "__v": 0
+            },
+            {
+                "_id": "680d1529408c2a3e015a83a4",
+                "photo_url": "https://static.vecteezy.com/system/resources/thumbnails/020/735/775/small_2x/white-t-shirt-realistic-mockup-front-view-template-design-eps10-illustration-vector.jpg",
+                "description": "T shirt",
+                "product": null,
+                "brand": "679a05182b11cd5ff18023e9",
+                "category": null,
+                "createdAt": "2025-04-26T17:17:29.123Z",
+                "updatedAt": "2025-04-26T17:17:29.123Z",
+                "__v": 0
+            }
+        ],
+        "total": 4,
+        "first_page": null,
+        "previous": null,
+        "next": null,
+        "last_page": null
+    }
+}
+
+
+

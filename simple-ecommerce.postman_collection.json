@@ -1,0 +1,1556 @@
+{
+  "info": {
+    "_postman_id": "5576e2d8-02c1-436f-84b0-22a89f546f0a",
+    "name": "simple-ecommerce",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "50689481",
+    "_collection_link": "https://go.postman.co/collection/50689481-5576e2d8-02c1-436f-84b0-22a89f546f0a?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "User",
+      "item": [
+        {
+          "name": "user-login (admin & cus)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\":\"meskatcse@gmail.com\",\r\n    \"password\":\"123456\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE}}/auth/login",
+              "host": [
+                "{{BASE}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            },
+            "description": "MustKeys: \\[\"email\", \"password\"\\]"
+          },
+          "response": []
+        },
+        {
+          "name": "user-signup",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"first_name\": \"Meskatul\",\r\n    \"last_name\": \"Islam\",\r\n    \"email\": \"meskatcse@gmail.com\",\r\n    \"password\": \"123456\",\r\n    \"phone\": \"01754658781\",\r\n    \"city\": \"Chattogram\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE}}/auth/signup",
+              "host": [
+                "{{BASE}}"
+              ],
+              "path": [
+                "auth",
+                "signup"
+              ]
+            },
+            "description": "MustKeys=\\[\"first_name\", \"last_name\", \"email\", \"password\"\\]\n\nValidKeys=\\[\"phone\", \"avatar_url\", \"address\", \"city\"\\]"
+          },
+          "response": []
+        },
+        {
+          "name": "verify-otp",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\":\"meskatcse@mail.com\",\r\n    \"otp\":\"1234\" // static\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE}}/auth/verify-otp",
+              "host": [
+                "{{BASE}}"
+              ],
+              "path": [
+                "auth",
+                "verify-otp"
+              ]
+            },
+            "description": "MustKeys=\\[\"email\", \"otp\"\\]"
+          },
+          "response": []
+        },
+        {
+          "name": "resend-otp",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\":\"customer@mail.com\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE}}/auth/resend-otp",
+              "host": [
+                "{{BASE}}"
+              ],
+              "path": [
+                "auth",
+                "resend-otp"
+              ]
+            },
+            "description": "MustKeys=\\[\"email\"\\]"
+          },
+          "response": []
+        },
+        {
+          "name": "read-my-profile",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "token",
+                "value": "{{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{BASE}}/auth/profile",
+              "host": [
+                "{{BASE}}"
+              ],
+              "path": [
+                "auth",
+                "profile"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update-my-profile",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "token",
+                "value": "{{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"first_name\": \"Meskatul\",\r\n    \"last_name\": \"Islam\",\r\n    \"phone\": \"01754658781\",\r\n    \"city\": \"Chattogram\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE}}/auth/profile",
+              "host": [
+                "{{BASE}}"
+              ],
+              "path": [
+                "auth",
+                "profile"
+              ]
+            },
+            "description": "> ValidKeys=\\[  \n\"first_name\",  \n\"last_name\",  \n\"phone\",  \n\"avatar_url\",  \n\"address\",  \n\"city\"  \n\\]"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Brand",
+      "item": [
+        {
+          "name": "brand-list",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE}}/brands",
+              "host": [
+                "{{BASE}}"
+              ],
+              "path": [
+                "brands"
+              ]
+            },
+            "description": "> validParams = \\[  \n\"count\",  \n\"page\",  \n\\]"
+          },
+          "response": []
+        },
+        {
+          "name": "read-brand",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE}}/brands/:brand_id",
+              "host": [
+                "{{BASE}}"
+              ],
+              "path": [
+                "brands",
+                ":brand_id"
+              ],
+              "variable": [
+                {
+                  "key": "brand_id",
+                  "value": "679a05182b11cd5ff18023e9"
+                }
+              ]
+            },
+            "description": "ValidKeys=\\[\"slug\", \"description\", \"icon\", \"parent\"\\]"
+          },
+          "response": []
+        },
+        {
+          "name": "create-brand (admin)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "token",
+                "value": "{{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"title\": \"Xiaomi\",\r\n    \"slug\": \"xiaomi\",\r\n    \"description\": \"brand description\",\r\n    \"icon\": \"https://cdn.ostad.app/public/upload/2023-06-22T06-40-41.054Z-code-box-line.png\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE}}/brand",
+              "host": [
+                "{{BASE}}"
+              ],
+              "path": [
+                "brand"
+              ]
+            },
+            "description": "MustKeys=\\[  \ntitle: String,  \nslug: String,  \n\\]\n\nValidKeys=\\[  \ndescription: String,  \nicon: String  \n\\]"
+          },
+          "response": []
+        },
+        {
+          "name": "update-brand (admin)",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"title\": \"New Brand t\",\r\n    \"description\": \"brand description\",\r\n    \"icon\": \"https://cdn.ostad.app/public/upload/2023-06-22T06-40-41.054Z-code-box-line.png\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE}}/brands/:brand_id",
+              "host": [
+                "{{BASE}}"
+              ],
+              "path": [
+                "brands",
+                ":brand_id"
+              ],
+              "variable": [
+                {
+                  "key": "brand_id",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "ValidKeys=\\[  \ntitle: String,  \ndescription: String,  \nicon: String  \n\\]"
+          },
+          "response": []
+        },
+        {
+          "name": "delete-brand (admin)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE}}/brands/:brand_id",
+              "host": [
+                "{{BASE}}"
+              ],
+              "path": [
+                "brands",
+                ":brand_id"
+              ],
+              "variable": [
+                {
+                  "key": "brand_id",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "ValidKeys=\\[\"slug\", \"description\", \"icon\", \"parent\"\\]"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Category",
+      "item": [
+        {
+          "name": "category-list",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE}}/categories",
+              "host": [
+                "{{BASE}}"
+              ],
+              "path": [
+                "categories"
+              ],
+              "query": [
+                {
+                  "key": "count",
+                  "value": "2",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "> validParams = \\[  \n\"count\",  \n\"page\",  \n\\]"
+          },
+          "response": []
+        },
+        {
+          "name": "read-category",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE}}/categories/:cat_id",
+              "host": [
+                "{{BASE}}"
+              ],
+              "path": [
+                "categories",
+                ":cat_id"
+              ],
+              "variable": [
+                {
+                  "key": "cat_id",
+                  "value": "67a0c850c0e18b8fdbd65ff6"
+                }
+              ]
+            },
+            "description": "ValidKeys=\\[\"slug\", \"description\", \"icon\", \"parent\"\\]"
+          },
+          "response": []
+        },
+        {
+          "name": "create-category (admin)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "token",
+                "value": "{{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"title\": \"New Category\",\r\n    \"slug\": \"new-cas\",\r\n    \"description\": \"cat description\",\r\n    \"icon\": \"https://cdn.ostad.app/public/upload/2023-06-22T06-40-41.054Z-code-box-line.png\",\r\n    \"parent\": null\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE}}/category",
+              "host": [
+                "{{BASE}}"
+              ],
+              "path": [
+                "category"
+              ]
+            },
+            "description": "MustKeys=\\[  \ntitle: String,  \nslug: String,  \n\\]\n\nValidKeys=\\[  \ndescription: String,  \nicon: String  \nparent: ObjectId  \n\\]"
+          },
+          "response": []
+        },
+        {
+          "name": "update-category (admin)",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"title\": \"New Category 3\",\r\n    \"slug\": \"new-cass\",\r\n    \"description\": \"cat description\",\r\n    \"icon\": \"https://cdn.ostad.app/public/upload/2023-06-22T06-40-41.054Z-code-box-line.png\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE}}/categories/:cat_id",
+              "host": [
+                "{{BASE}}"
+              ],
+              "path": [
+                "categories",
+                ":cat_id"
+              ],
+              "variable": [
+                {
+                  "key": "cat_id",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "ValidKeys=\\[  \ntitle: String,  \ndescription: String,  \nicon: String  \nparent: ObjectId  \n\\]"
+          },
+          "response": []
+        },
+        {
+          "name": "delete-category (admin)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE}}/categories/:cat_id",
+              "host": [
+                "{{BASE}}"
+              ],
+              "path": [
+                "categories",
+                ":cat_id"
+              ],
+              "variable": [
+                {
+                  "key": "cat_id",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "ValidKeys=\\[\"slug\", \"description\", \"icon\", \"parent\"\\]"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Product",
+      "item": [
+        {
+          "name": "product-list",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "token",
+                "value": "{{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{BASE}}/products",
+              "host": [
+                "{{BASE}}"
+              ],
+              "path": [
+                "products"
+              ],
+              "query": [
+                {
+                  "key": "count",
+                  "value": "1",
+                  "disabled": true
+                },
+                {
+                  "key": "page",
+                  "value": "2",
+                  "disabled": true
+                },
+                {
+                  "key": "brand",
+                  "value": "67a0c817c0e18b8fdbd65ff1",
+                  "disabled": true
+                },
+                {
+                  "key": "category",
+                  "value": "6799c5d785b54cac3abec28f",
+                  "disabled": true
+                },
+                {
+                  "key": "tag",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "> validParams = \\[  \n\"count\",  \n\"page\",  \n\"brand\",  \n\"category\",  \n\"tag\"  \n\\]"
+          },
+          "response": []
+        },
+        {
+          "name": "read-product-by-slug",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE}}/products/:product_slug",
+              "host": [
+                "{{BASE}}"
+              ],
+              "path": [
+                "products",
+                ":product_slug"
+              ],
+              "variable": [
+                {
+                  "key": "product_slug",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "ValidKeys=\\[\"slug\", \"description\", \"icon\", \"parent\"\\]"
+          },
+          "response": []
+        },
+        {
+          "name": "read-product-by-id",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE}}/products/id/:product_id",
+              "host": [
+                "{{BASE}}"
+              ],
+              "path": [
+                "products",
+                "id",
+                ":product_id"
+              ],
+              "variable": [
+                {
+                  "key": "product_id",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "ValidKeys=\\[\"slug\", \"description\", \"icon\", \"parent\"\\]"
+          },
+          "response": []
+        },
+        {
+          "name": "create-product (admin)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "token",
+                "value": "{{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"title\": \"New product 3\",\r\n    \"slug\": \"new-productds\",\r\n    \"brand\":\"6799d84bceaaf5d3413a0989\",\r\n    \"categories\":[\"6799d7b8a164eec94185022f\",\"6799c5d785b54cac3abec28f\"],\r\n    \"current_price\":\"12000\",\r\n    \"description\": \"cat description fgjh fgjh fj fj\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE}}/product",
+              "host": [
+                "{{BASE}}"
+              ],
+              "path": [
+                "product"
+              ]
+            },
+            "description": "MustKeys=\\[  \ntitle: String,  \nslug: String,  \nbrand: ObjectId,  \ncategories: \\[ObjectId\\],  \ncurrent_price: Number  \n\\]\n\nValidKeys=\\[  \ndescription: String,  \nmeta_description: String,  \nphotos: \\[String\\],  \ncolors: \\[String\\],  \nsizes: \\[String\\],  \ntags: \\[String\\],  \nquantity: Number  \nregular_price: Number  \n\\]"
+          },
+          "response": []
+        },
+        {
+          "name": "update-product (admin)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "token",
+                "value": "{{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"title\": \"New product 3\",\r\n    \"brand\":\"6799d84bceaaf5d3413a0989\",\r\n    \"categories\":[\"6799d7b8a164eec94185022f\",\"6799c5d785b54cac3abec28f\"],\r\n    \"current_price\":\"12000\",\r\n    \"description\": \"cat description fgjh fgjh fj fj\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE}}/products/:product_id",
+              "host": [
+                "{{BASE}}"
+              ],
+              "path": [
+                "products",
+                ":product_id"
+              ],
+              "variable": [
+                {
+                  "key": "product_id",
+                  "value": "679fa46334830110f991716a"
+                }
+              ]
+            },
+            "description": "ValidKeys=\\[  \ntitle: String,  \nbrand: ObjectId,  \ncategories: \\[ObjectId\\],  \ncurrent_price: Number  \ndescription: String,  \nmeta_description: String,  \nphotos: \\[String\\],  \ncolors: \\[String\\],  \nsizes: \\[String\\],  \ntags: \\[String\\],  \nquantity: Number  \nregular_price: Number  \n\\]"
+          },
+          "response": []
+        },
+        {
+          "name": "delete-product (admin)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "token",
+                "value": "{{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE}}/products/:product_id",
+              "host": [
+                "{{BASE}}"
+              ],
+              "path": [
+                "products",
+                ":product_id"
+              ],
+              "variable": [
+                {
+                  "key": "product_id",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "ValidKeys=\\[\"slug\", \"description\", \"icon\", \"parent\"\\]"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Product Review",
+      "item": [
+        {
+          "name": "review-list",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "token",
+                "value": "{{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{BASE}}/reviews?product=679a06ad8ddf463f174f0df6",
+              "host": [
+                "{{BASE}}"
+              ],
+              "path": [
+                "reviews"
+              ],
+              "query": [
+                {
+                  "key": "count",
+                  "value": "2",
+                  "disabled": true
+                },
+                {
+                  "key": "product",
+                  "value": "679a06ad8ddf463f174f0df6"
+                }
+              ]
+            },
+            "description": "> validParams = \\[  \n\"count\",  \n\"page\",  \n\"product\"  \n\\]"
+          },
+          "response": []
+        },
+        {
+          "name": "create-review",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "token",
+                "value": "{{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"product\": \"679a06ad8ddf463f174f0df6\",\r\n    \"comment\":\"test review\",\r\n    \"rating\":\"4\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE}}/review",
+              "host": [
+                "{{BASE}}"
+              ],
+              "path": [
+                "review"
+              ]
+            },
+            "description": "MustKeys=\\[  \nproduct: ObjectId,  \ncomment: String,  \n\\]\n\nValidKeys=\\[  \nrating: Number  \n\\]"
+          },
+          "response": []
+        },
+        {
+          "name": "update-review",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "token",
+                "value": "{{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"comment\":\"test review\",\r\n    \"rating\":\"4\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE}}/reviews/:review_id",
+              "host": [
+                "{{BASE}}"
+              ],
+              "path": [
+                "reviews",
+                ":review_id"
+              ],
+              "variable": [
+                {
+                  "key": "review_id",
+                  "value": "679b1e33cc99893c88520e82"
+                }
+              ]
+            },
+            "description": "ValidKeys=\\[  \ncomment: String,  \nrating: Number  \n\\]"
+          },
+          "response": []
+        },
+        {
+          "name": "delete-review (admin & cus)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "token",
+                "value": "{{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE}}/reviews/:review_id",
+              "host": [
+                "{{BASE}}"
+              ],
+              "path": [
+                "reviews",
+                ":review_id"
+              ],
+              "variable": [
+                {
+                  "key": "review_id",
+                  "value": "679b1e33cc99893c88520e82"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Cart & Wishlist",
+      "item": [
+        {
+          "name": "cart-item-list",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "token",
+                "value": "{{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{BASE}}/cart",
+              "host": [
+                "{{BASE}}"
+              ],
+              "path": [
+                "cart"
+              ],
+              "query": [
+                {
+                  "key": "count",
+                  "value": "2",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "> validParams = \\[  \n\"count\",  \n\"page\",  \n\\]"
+          },
+          "response": []
+        },
+        {
+          "name": "add-to-cart",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "token",
+                "value": "{{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n   \"product\":\"679a06ad8ddf463f174f0df6\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE}}/cart",
+              "host": [
+                "{{BASE}}"
+              ],
+              "path": [
+                "cart"
+              ]
+            },
+            "description": "MustKeys=\\[  \nproduct: ObjectId  \n\\]\n\nvalidKeys: \\[  \nquantity: Number,  \ncolor: String,  \nsize: String  \n\\]"
+          },
+          "response": []
+        },
+        {
+          "name": "update-cart-item",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "token",
+                "value": "{{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"quantity\": \"2\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE}}/cart/:cart_item_id",
+              "host": [
+                "{{BASE}}"
+              ],
+              "path": [
+                "cart",
+                ":cart_item_id"
+              ],
+              "variable": [
+                {
+                  "key": "cart_item_id",
+                  "value": "6799f9bda42b39e362684ad6"
+                }
+              ]
+            },
+            "description": "ValidKeys=\\[  \nquantity: Number  \n\\]"
+          },
+          "response": []
+        },
+        {
+          "name": "delete-cart-item",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "token",
+                "value": "{{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE}}/cart/:cart_item_id",
+              "host": [
+                "{{BASE}}"
+              ],
+              "path": [
+                "cart",
+                ":cart_item_id"
+              ],
+              "variable": [
+                {
+                  "key": "cart_item_id",
+                  "value": "6799f9bda42b39e362684ad6"
+                }
+              ]
+            },
+            "description": "ValidKeys=\\[\"slug\", \"description\", \"icon\", \"parent\"\\]"
+          },
+          "response": []
+        },
+        {
+          "name": "wishlist-item-list",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "token",
+                "value": "{{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{BASE}}/wishlist",
+              "host": [
+                "{{BASE}}"
+              ],
+              "path": [
+                "wishlist"
+              ],
+              "query": [
+                {
+                  "key": "count",
+                  "value": "2",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "> validParams = \\[  \n\"count\",  \n\"page\",  \n\\]"
+          },
+          "response": []
+        },
+        {
+          "name": "add-to-wishlist",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "token",
+                "value": "{{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n   \"product\":\"6799db1b189b5fbbe81cc3a5\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE}}/wishlist",
+              "host": [
+                "{{BASE}}"
+              ],
+              "path": [
+                "wishlist"
+              ]
+            },
+            "description": "MustKeys=\\[  \nproduct: ObjectId  \n\\]"
+          },
+          "response": []
+        },
+        {
+          "name": "delete-wishlist-item",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "token",
+                "value": "{{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE}}/wishlist/:wishlist_item_id",
+              "host": [
+                "{{BASE}}"
+              ],
+              "path": [
+                "wishlist",
+                ":wishlist_item_id"
+              ],
+              "variable": [
+                {
+                  "key": "wishlist_item_id",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "ValidKeys=\\[\"slug\", \"description\", \"icon\", \"parent\"\\]"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Order",
+      "item": [
+        {
+          "name": "order-list (admin & cus)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "token",
+                "value": "{{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{BASE}}/orders",
+              "host": [
+                "{{BASE}}"
+              ],
+              "path": [
+                "orders"
+              ],
+              "query": [
+                {
+                  "key": "count",
+                  "value": "2",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "> validParams = \\[  \n\"count\",  \n\"page\",  \n\\]"
+          },
+          "response": []
+        },
+        {
+          "name": "read-order (admin & cus) Copy",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "token",
+                "value": "{{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{BASE}}/orders/:order_id",
+              "host": [
+                "{{BASE}}"
+              ],
+              "path": [
+                "orders",
+                ":order_id"
+              ],
+              "query": [
+                {
+                  "key": "count",
+                  "value": "2",
+                  "disabled": true
+                }
+              ],
+              "variable": [
+                {
+                  "key": "order_id",
+                  "value": "67a3253bd69acd5f6d92bd45"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "create-order",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "token",
+                "value": "{{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"payment_method\": \"ssl\",\r\n    \"shipping_address\": {\r\n        \"full_name\": \"Meskatul Islam\",\r\n        \"address\": \"Shovandandi-4370, Patiya\",\r\n        \"city\": \"Chattogram\",\r\n        \"postal_code\": \"4370\",\r\n        \"phone\": \"01754658781\"\r\n    },\r\n    \"redirect_url\":\"https://jsonplaceholder.typicode.com/posts\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE}}/order",
+              "host": [
+                "{{BASE}}"
+              ],
+              "path": [
+                "order"
+              ]
+            },
+            "description": "MustKeys=\\[  \npayment_method: String,  \nshipping_address: Object  \n\\]\n\npayment_method enum = \"cod\" | \"ssl\"\n\nshipping_address:{  \nfull_name: String,  \naddress: String,  \ncity: Striing,  \npostal_code: String,  \nphone: String,\n\nredirect_url: String  \n}"
+          },
+          "response": []
+        },
+        {
+          "name": "cancel-order",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "token",
+                "value": "{{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE}}/orders/:order_id/cancel",
+              "host": [
+                "{{BASE}}"
+              ],
+              "path": [
+                "orders",
+                ":order_id",
+                "cancel"
+              ],
+              "variable": [
+                {
+                  "key": "order_id",
+                  "value": "67a32903b1b8cf3b265c6e3d"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update-order (admin)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "token",
+                "value": "{{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"status\": \"confirmed\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE}}/orders/:order_id",
+              "host": [
+                "{{BASE}}"
+              ],
+              "path": [
+                "orders",
+                ":order_id"
+              ],
+              "variable": [
+                {
+                  "key": "order_id",
+                  "value": "67a32903b1b8cf3b265c6e3d"
+                }
+              ]
+            },
+            "description": "ValidKeys=\\[  \nstatus: \\[\"pending\", \"confirmed\", \"processing\", \"shipped\", \"delivered\", \"canceled\"\\],  \nshipping_address: Object  \n\\]\n\nshipping_address:{  \nfull_name: String,  \naddress: String,  \ncity: Striing,  \npostal_code: String,  \nphone: String  \n}"
+          },
+          "response": []
+        },
+        {
+          "name": "test",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "token",
+                "value": "{{token}}",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"status\": \"VALID\",\r\n    \"tran_id\":\"tran_1746956030935\",\r\n    \"amount\":\"36000\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ecom-rs8e.onrender.com/api/orders/transaction",
+              "protocol": "https",
+              "host": [
+                "ecom-rs8e",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "api",
+                "orders",
+                "transaction"
+              ]
+            },
+            "description": "ValidKeys=\\[  \nstatus: \\[\"pending\", \"confirmed\", \"processing\", \"shipped\", \"delivered\", \"canceled\"\\],  \nshipping_address: Object  \n\\]\n\nshipping_address:{  \nfull_name: String,  \naddress: String,  \ncity: Striing,  \npostal_code: String,  \nphone: String  \n}"
+          },
+          "response": []
+        },
+        {
+          "name": "delete-order (admin)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "token",
+                "value": "{{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE}}/orders/:order_id",
+              "host": [
+                "{{BASE}}"
+              ],
+              "path": [
+                "orders",
+                ":order_id"
+              ],
+              "variable": [
+                {
+                  "key": "order_id",
+                  "value": "67a3253bd69acd5f6d92bd45"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "item": [
+        {
+          "name": "slide-list",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE}}/slides",
+              "host": [
+                "{{BASE}}"
+              ],
+              "path": [
+                "slides"
+              ]
+            },
+            "description": "> validParams = \\[  \n\"count\",  \n\"page\",  \n\\]"
+          },
+          "response": []
+        },
+        {
+          "name": "create-slide (admin)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "token",
+                "value": "{{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"photo_url\": \"https://cdn.ostad.app/course/cover/2024-12-18T15-22-42.948Z-Flutter-Thumbnail.jpg\",\r\n    \"description\":\"sjkghsghsdfu\",\r\n    \"brand\":\"679a05182b11cd5ff18023e9\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE}}/slide",
+              "host": [
+                "{{BASE}}"
+              ],
+              "path": [
+                "slide"
+              ]
+            },
+            "description": "MustKeys=\\[ photo_url: String\\]\n\nValidKeys=\\[  \ndescription: String,  \nproduct: ObjectId  \nbrand: ObjectId  \ncategory: ObjectId  \n\\]"
+          },
+          "response": []
+        },
+        {
+          "name": "delete-slide (admin)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "token",
+                "value": "{{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE}}/slides/:slide_id",
+              "host": [
+                "{{BASE}}"
+              ],
+              "path": [
+                "slides",
+                ":slide_id"
+              ],
+              "variable": [
+                {
+                  "key": "slide_id",
+                  "value": "679b5340581a529fac302af9"
+                }
+              ]
+            },
+            "description": "ValidKeys=\\[\"slug\", \"description\", \"icon\", \"parent\"\\]"
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "BASE",
+      "value": "https://ecom-rs8e.onrender.com/api",
+      "type": "string"
+    }
+  ]
+}
