@@ -1,5 +1,10 @@
+import 'package:crafty_bay/app/providers/auth_controller.dart';
+import 'package:crafty_bay/features/auth/presentation/screens/sign_in_screen.dart';
 import 'package:crafty_bay/features/shared/data/models/product_model.dart';
+import 'package:crafty_bay/features/shared/presentation/widgets/snack_bar_message.dart';
+import 'package:crafty_bay/features/wishlist/presentation/providers/wish_list_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../app/app_colors.dart';
 import '../../../../app/asset_paths.dart';
@@ -12,7 +17,7 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = TextTheme.of(context);
+    final textTheme = Theme.of(context).textTheme;
 
     return GestureDetector(
       onTap: () {
@@ -23,7 +28,7 @@ class ProductCard extends StatelessWidget {
         );
       },
       child: Card(
-        shape: RoundedRectangleBorder(borderRadius: .circular(8)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         color: Colors.white,
         shadowColor: AppColors.themeColor.withAlpha(40),
         elevation: 2,
@@ -54,8 +59,6 @@ class ProductCard extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
-                  spacing: 4,
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       productModel.title,
@@ -83,17 +86,43 @@ class ProductCard extends StatelessWidget {
                             Text('${productModel.rating}'),
                           ],
                         ),
-                        Container(
-                          padding: const EdgeInsets.all(2),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(4),
-                            color: AppColors.themeColor,
-                          ),
-                          child: const Icon(
-                            Icons.favorite_outline,
-                            size: 18,
-                            color: Colors.white,
-                          ),
+                        Consumer<WishListProvider>(
+                          builder: (context, wishListProvider, _) {
+                            final bool isInWishlist = wishListProvider.isProductInWishlist(productModel.id);
+
+                            return GestureDetector(
+                              onTap: () async {
+                                if (await AuthController.isLoggedIn() == false) {
+                                  if (!context.mounted) return;
+                                  Navigator.pushNamed(context, SignInScreen.name);
+                                  return;
+                                }
+                                final isSuccess = await wishListProvider.toggleWishlist(productModel);
+                                if (context.mounted) {
+                                  if (isSuccess) {
+                                    showSnackBarMessage(
+                                      context,
+                                      isInWishlist ? 'Removed from wishlist' : 'Added to wishlist',
+                                    );
+                                  } else if (wishListProvider.errorMessage != null) {
+                                    showSnackBarMessage(context, wishListProvider.errorMessage!);
+                                  }
+                                }
+                              },
+                              child: Container(
+                                padding: const EdgeInsets.all(2),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(4),
+                                  color: AppColors.themeColor,
+                                ),
+                                child: Icon(
+                                  isInWishlist ? Icons.favorite : Icons.favorite_outline,
+                                  size: 18,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            );
+                          },
                         ),
                       ],
                     ),

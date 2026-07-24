@@ -114,6 +114,137 @@ class NetworkCaller {
     }
   }
 
+  Future<NetworkResponse> deleteRequest(String url) async {
+    try {
+      Uri uri = Uri.parse(url);
+
+      _logRequest(url, headers: headers());
+      final Response response = await delete(uri, headers: headers());
+      _logResponse(response);
+
+      if (response.statusCode == 200 || response.statusCode == 204) {
+        final decodedJson = response.body.isNotEmpty ? jsonDecode(response.body) : {};
+        return NetworkResponse(
+          isSuccess: true,
+          statusCode: response.statusCode,
+          body: decodedJson,
+        );
+      } else if (response.statusCode == 401) {
+        onUnauthorized();
+        return NetworkResponse(
+          isSuccess: false,
+          statusCode: response.statusCode,
+          errorMessage: 'Unauthorized',
+        );
+      } else {
+        final decodedJson = response.body.isNotEmpty ? jsonDecode(response.body) : {};
+        return NetworkResponse(
+          isSuccess: false,
+          statusCode: response.statusCode,
+          errorMessage: decodedJson['msg'] ?? 'Something went wrong!',
+        );
+      }
+    } on Exception catch (e) {
+      return NetworkResponse(
+        isSuccess: false,
+        statusCode: -1,
+        errorMessage: e.toString(),
+      );
+    }
+  }
+
+  Future<NetworkResponse> putRequest(
+    String url, {
+    Map<String, dynamic>? body,
+  }) async {
+    try {
+      Uri uri = Uri.parse(url);
+
+      _logRequest(url, requestBody: body, headers: headers());
+      final Response response = await put(
+        uri,
+        headers: headers(),
+        body: jsonEncode(body),
+      );
+      _logResponse(response);
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        final decodedJson = response.body.isNotEmpty ? jsonDecode(response.body) : {};
+        return NetworkResponse(
+          isSuccess: true,
+          statusCode: response.statusCode,
+          body: decodedJson,
+        );
+      } else if (response.statusCode == 401) {
+        onUnauthorized();
+        return NetworkResponse(
+          isSuccess: false,
+          statusCode: response.statusCode,
+          errorMessage: 'Unauthorized',
+        );
+      } else {
+        final decodedJson = response.body.isNotEmpty ? jsonDecode(response.body) : {};
+        return NetworkResponse(
+          isSuccess: false,
+          statusCode: response.statusCode,
+          errorMessage: decodedJson['msg'] ?? 'Something went wrong!',
+        );
+      }
+    } on Exception catch (e) {
+      return NetworkResponse(
+        isSuccess: false,
+        statusCode: -1,
+        errorMessage: e.toString(),
+      );
+    }
+  }
+
+  Future<NetworkResponse> patchRequest(
+    String url, {
+    Map<String, dynamic>? body,
+  }) async {
+    try {
+      Uri uri = Uri.parse(url);
+
+      _logRequest(url, requestBody: body, headers: headers());
+      final Response response = await patch(
+        uri,
+        headers: headers(),
+        body: jsonEncode(body),
+      );
+      _logResponse(response);
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        final decodedJson = response.body.isNotEmpty ? jsonDecode(response.body) : {};
+        return NetworkResponse(
+          isSuccess: true,
+          statusCode: response.statusCode,
+          body: decodedJson,
+        );
+      } else if (response.statusCode == 401) {
+        onUnauthorized();
+        return NetworkResponse(
+          isSuccess: false,
+          statusCode: response.statusCode,
+          errorMessage: 'Unauthorized',
+        );
+      } else {
+        final decodedJson = response.body.isNotEmpty ? jsonDecode(response.body) : {};
+        return NetworkResponse(
+          isSuccess: false,
+          statusCode: response.statusCode,
+          errorMessage: decodedJson['msg'] ?? 'Something went wrong!',
+        );
+      }
+    } on Exception catch (e) {
+      return NetworkResponse(
+        isSuccess: false,
+        statusCode: -1,
+        errorMessage: e.toString(),
+      );
+    }
+  }
+
   void _logRequest(
     String url, {
     Map<String, dynamic>? requestBody,

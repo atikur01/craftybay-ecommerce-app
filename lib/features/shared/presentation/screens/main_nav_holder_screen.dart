@@ -7,6 +7,7 @@ import 'package:crafty_bay/features/home/presentation/providers/new_product_prov
 import 'package:crafty_bay/features/home/presentation/providers/popular_product_provider.dart';
 import 'package:crafty_bay/features/home/presentation/providers/special_product_provider.dart';
 import 'package:crafty_bay/features/home/presentation/screens/home_screen.dart';
+import 'package:crafty_bay/features/wishlist/presentation/providers/wish_list_provider.dart';
 import 'package:crafty_bay/features/wishlist/presentation/screens/wishlist_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -44,6 +45,9 @@ class _MainNavHolderScreenState extends State<MainNavHolderScreen> {
     _popularProductProvider.getPopularProducts();
     _specialProductProvider.getSpecialProducts();
     _newProductProvider.getNewProducts();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<WishListProvider>().getWishlistData();
+    });
   }
 
   @override

@@ -1,3 +1,4 @@
+import 'package:crafty_bay/features/shared/data/models/product_model.dart';
 import 'package:crafty_bay/features/wishlist/data/models/wishlist_model.dart';
 import 'package:flutter/foundation.dart';
 
@@ -28,10 +29,91 @@ class WishListProvider extends ChangeNotifier {
 
   List<WishlistModel> get productList => _wishListItems;
 
+  bool isProductInWishlist(String productId) {
+    return _wishListItems.any((item) => item.productModel.id == productId);
+  }
+
+  String? getWishlistItemId(String productId) {
+    for (WishlistModel item in _wishListItems) {
+      if (item.productModel.id == productId) {
+        return item.cartId;
+      }
+    }
+    return null;
+  }
+
+  Future<bool> addToWishlist(ProductModel productModel) async {
+    bool isSuccess = false;
+
+    final NetworkResponse response = await getNetworkCaller().postRequest(
+      Urls.addToWishlistUrl,
+      body: {'product': productModel.id},
+    );
+
+    if (response.isSuccess) {
+      String wishlistId = '';
+      if (response.body != null && response.body['data'] != null) {
+        wishlistId = response.body['data']['_id'] ?? '';
+      }
+      _wishListItems.add(
+        WishlistModel(cartId: wishlistId, productModel: productModel),
+      );
+      isSuccess = true;
+      _errorMessage = null;
+      notifyListeners();
+    } else {
+      _errorMessage = response.errorMessage;
+    }
+
+    return isSuccess;
+  }
+
+  Future<bool> removeFromWishlist(String id) async {
+    bool isSuccess = false;
+    String? wishlistId;
+    String? productId;
+
+    for (WishlistModel item in _wishListItems) {
+      if (item.cartId == id || item.productModel.id == id) {
+        wishlistId = item.cartId;
+        productId = item.productModel.id;
+        break;
+      }
+    }
+
+    if (wishlistId == null || wishlistId.isEmpty) {
+      return false;
+    }
+
+    final NetworkResponse response = await getNetworkCaller().deleteRequest(
+      Urls.deleteWishlistUrl(wishlistId),
+    );
+
+    if (response.isSuccess) {
+      _wishListItems.removeWhere(
+        (item) => item.cartId == wishlistId || item.productModel.id == productId,
+      );
+      isSuccess = true;
+      _errorMessage = null;
+      notifyListeners();
+    } else {
+      _errorMessage = response.errorMessage;
+    }
+
+    return isSuccess;
+  }
+
+  Future<bool> toggleWishlist(ProductModel productModel) async {
+    if (isProductInWishlist(productModel.id)) {
+      return await removeFromWishlist(productModel.id);
+    } else {
+      return await addToWishlist(productModel);
+    }
+  }
+
   Future<bool> getWishlistData() async {
     bool isSuccess = false;
 
-    // Current page is greater than last or is that initial page
     if (_currentPage == 0 || (_lastPage != null && _currentPage < _lastPage!)) {
       _currentPage++;
     } else {
@@ -45,7 +127,6 @@ class WishListProvider extends ChangeNotifier {
     }
     notifyListeners();
 
-    // Load data from API
     final NetworkResponse response = await getNetworkCaller().getRequest(
       Urls.wishlistUrl(_currentPage, _productsPerPage),
     );

@@ -4,8 +4,10 @@ import 'package:crafty_bay/features/cart/data/models/add_to_cart_params.dart';
 import 'package:crafty_bay/features/cart/presentation/providers/add_to_cart_provider.dart';
 import 'package:crafty_bay/features/products/presentation/providers/product_details_provider.dart';
 import 'package:crafty_bay/features/products/presentation/screens/review_list_screen.dart';
+import 'package:crafty_bay/features/shared/data/models/product_model.dart';
 import 'package:crafty_bay/features/shared/presentation/widgets/centered_progress_indicator.dart';
 import 'package:crafty_bay/features/shared/presentation/widgets/snack_bar_message.dart';
+import 'package:crafty_bay/features/wishlist/presentation/providers/wish_list_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -121,18 +123,52 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                     },
                                     child: Text('Reviews'),
                                   ),
-                                  Container(
-                                    padding: const EdgeInsets.all(2),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(4),
-                                      color: AppColors.themeColor,
-                                    ),
-                                    child: Icon(
-                                      Icons.favorite_outline,
-                                      size: 18,
-                                      color: Colors.white,
-                                    ),
-                                  ),
+                                  Consumer<WishListProvider>(
+                                     builder: (context, wishListProvider, _) {
+                                       final bool isInWishlist = wishListProvider.isProductInWishlist(productModel.id);
+
+                                       return GestureDetector(
+                                         onTap: () async {
+                                           if (await AuthController.isLoggedIn() == false) {
+                                             if (!context.mounted) return;
+                                             Navigator.pushNamed(context, SignInScreen.name);
+                                             return;
+                                           }
+                                            ProductModel itemProductModel = ProductModel(
+                                              id: productModel.id,
+                                              title: productModel.title,
+                                              photos: productModel.photos,
+                                              price: productModel.currentPrice,
+                                              rating: productModel.rating,
+                                              quantity: productModel.quantity,
+                                            );
+                                            final isSuccess = await wishListProvider.toggleWishlist(itemProductModel);
+                                           if (context.mounted) {
+                                             if (isSuccess) {
+                                               showSnackBarMessage(
+                                                 context,
+                                                 isInWishlist ? 'Removed from wishlist' : 'Added to wishlist',
+                                               );
+                                             } else if (wishListProvider.errorMessage != null) {
+                                               showSnackBarMessage(context, wishListProvider.errorMessage!);
+                                             }
+                                           }
+                                         },
+                                         child: Container(
+                                           padding: const EdgeInsets.all(2),
+                                           decoration: BoxDecoration(
+                                             borderRadius: BorderRadius.circular(4),
+                                             color: AppColors.themeColor,
+                                           ),
+                                           child: Icon(
+                                             isInWishlist ? Icons.favorite : Icons.favorite_outline,
+                                             size: 18,
+                                             color: Colors.white,
+                                           ),
+                                         ),
+                                       );
+                                     },
+                                   ),
                                 ],
                               ),
                               const SizedBox(height: 16),

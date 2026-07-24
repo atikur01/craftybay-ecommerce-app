@@ -32,6 +32,11 @@ class Urls {
   static String wishlistUrl(int currentPage, int productsPerPage) =>
       '$_baseUrl/wishlist?count=$productsPerPage&page=$currentPage';
 
+  static const String addToWishlistUrl = '$_baseUrl/wishlist';
+
+  static String deleteWishlistUrl(String wishlistId) =>
+      '$_baseUrl/wishlist/$wishlistId';
+
   static String productDetailsUrl(String productId) =>
       '$_baseUrl/products/id/$productId';
 
