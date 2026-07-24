@@ -1,3 +1,5 @@
+import 'package:crafty_bay/features/profile/presentation/screens/edit_profile_screen.dart';
+import 'package:crafty_bay/features/profile/presentation/screens/profile_details_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../features/auth/presentation/screens/sign_in_screen.dart';
@@ -42,6 +44,10 @@ class AppRoutes {
       case CreateReviewScreen.name:
         final String productId = settings.arguments as String;
         widget = CreateReviewScreen(productId: productId);
+      case ProfileDetailsScreen.name:
+        widget = const ProfileDetailsScreen();
+      case EditProfileScreen.name:
+        widget = const EditProfileScreen();
     }
 
     return MaterialPageRoute(builder: (ctx) => widget);
