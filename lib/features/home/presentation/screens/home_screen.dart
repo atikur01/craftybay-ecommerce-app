@@ -2,6 +2,7 @@ import 'package:crafty_bay/features/home/presentation/providers/home_sliders_pro
 import 'package:crafty_bay/features/home/presentation/providers/new_product_provider.dart';
 import 'package:crafty_bay/features/home/presentation/providers/popular_product_provider.dart';
 import 'package:crafty_bay/features/home/presentation/providers/special_product_provider.dart';
+import 'package:crafty_bay/features/products/presentation/screens/product_list_by_category_screen.dart';
 import 'package:crafty_bay/features/shared/data/models/product_model.dart';
 import 'package:crafty_bay/features/shared/presentation/widgets/centered_progress_indicator.dart';
 import 'package:crafty_bay/features/shared/presentation/widgets/product_card.dart';
@@ -58,7 +59,14 @@ class _HomeScreenState extends State<HomeScreen> {
               SectionHeader(
                 headerText: 'Popular',
                 onTapSeeAll: () {
-                  context.read<MainNavHolderProvider>().navigateToCategory();
+                  Navigator.pushNamed(
+                    context,
+                    ProductListByCategoryScreen.name,
+                    arguments: {
+                      'categoryName': 'Popular Products',
+                      'tag': 'popular',
+                    },
+                  );
                 },
               ),
               Consumer<PopularProductProvider>(
@@ -78,7 +86,14 @@ class _HomeScreenState extends State<HomeScreen> {
               SectionHeader(
                 headerText: 'Special',
                 onTapSeeAll: () {
-                  context.read<MainNavHolderProvider>().navigateToCategory();
+                  Navigator.pushNamed(
+                    context,
+                    ProductListByCategoryScreen.name,
+                    arguments: {
+                      'categoryName': 'Special Products',
+                      'tag': 'special',
+                    },
+                  );
                 },
               ),
               Consumer<SpecialProductProvider>(
@@ -98,7 +113,14 @@ class _HomeScreenState extends State<HomeScreen> {
               SectionHeader(
                 headerText: 'New',
                 onTapSeeAll: () {
-                  context.read<MainNavHolderProvider>().navigateToCategory();
+                  Navigator.pushNamed(
+                    context,
+                    ProductListByCategoryScreen.name,
+                    arguments: {
+                      'categoryName': 'New Products',
+                      'tag': 'new',
+                    },
+                  );
                 },
               ),
               Consumer<NewProductProvider>(

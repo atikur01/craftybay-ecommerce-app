@@ -8,13 +8,15 @@ import '../providers/product_list_provider.dart';
 class ProductListByCategoryScreen extends StatefulWidget {
   const ProductListByCategoryScreen({
     super.key,
-    required this.categoryId,
+    this.categoryId,
+    this.tag,
     required this.categoryName,
   });
 
   static const String name = '/products-list-by-category';
 
-  final String categoryId;
+  final String? categoryId;
+  final String? tag;
   final String categoryName;
 
   @override
@@ -30,14 +32,20 @@ class _ProductListByCategoryScreenState
   @override
   void initState() {
     super.initState();
-    _productListProvider.getProductData();
+    _productListProvider.getProductData(
+      categoryId: widget.categoryId,
+      tag: widget.tag,
+    );
     _scrollController.addListener(_loadMore);
   }
 
   void _loadMore() {
     if ((_productListProvider.isLoading == false) &&
         _scrollController.position.extentBefore < 300) {
-      _productListProvider.getProductData();
+      _productListProvider.getProductData(
+        categoryId: widget.categoryId,
+        tag: widget.tag,
+      );
     }
   }
 
