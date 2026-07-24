@@ -8,6 +8,7 @@ import '../../../shared/presentation/widgets/centered_progress_indicator.dart';
 import '../../../shared/presentation/widgets/snack_bar_message.dart';
 import '../../data/models/verify_otp_params.dart';
 import '../providers/otp_timer_provider.dart';
+import '../providers/resend_otp_provider.dart';
 import '../providers/verify_otp_provider.dart';
 import '../widgets/app_logo.dart';
 
@@ -31,6 +32,8 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
 
   final VerifyOtpProvider _verifyOtpProvider = VerifyOtpProvider();
 
+  final ResendOtpProvider _resendOtpProvider = ResendOtpProvider();
+
   @override
   void initState() {
     super.initState();
@@ -45,6 +48,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
       providers: [
         ChangeNotifierProvider.value(value: _otpTimerProvider),
         ChangeNotifierProvider.value(value: _verifyOtpProvider),
+        ChangeNotifierProvider.value(value: _resendOtpProvider),
       ],
       child: Scaffold(
         body: SafeArea(
@@ -91,8 +95,11 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                       },
                     ),
                     const SizedBox(height: 16),
-                    Consumer<OtpTimerProvider>(
-                      builder: (context, _, _) {
+                    Consumer2<OtpTimerProvider, ResendOtpProvider>(
+                      builder: (context, timerProvider, resendProvider, child) {
+                        if (_resendOtpProvider.inProgress) {
+                          return CenteredProcessIndicator();
+                        }
                         if (_otpTimerProvider.secondsLeft == 0) {
                           return TextButton(
                             onPressed: _onTapResendOTP,
@@ -132,8 +139,10 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
 
   Future<void> _verifyOtp() async {
     final bool isSuccess = await _verifyOtpProvider.verifyOtp(
-      VerifyOtpParams(otp: _otpTEController.text, email: ''),
+      VerifyOtpParams(otp: _otpTEController.text, email: widget.email),
     );
+
+    if (!mounted) return;
 
     if (isSuccess) {
       Navigator.pushNamedAndRemoveUntil(
@@ -143,9 +152,21 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
     }
   }
 
-  void _onTapResendOTP() {
-    _otpTimerProvider.startTimer();
-    // TODO: Resend otp from api
+  Future<void> _onTapResendOTP() async {
+    final bool isSuccess = await _resendOtpProvider.resendOtp(widget.email);
+    if (isSuccess) {
+      _otpTimerProvider.startTimer();
+      if (mounted) {
+        showSnackBarMessage(context, 'OTP has been resent successfully');
+      }
+    } else {
+      if (mounted) {
+        showSnackBarMessage(
+          context,
+          _resendOtpProvider.errorMessage ?? 'Failed to resend OTP',
+        );
+      }
+    }
   }
 
   @override
