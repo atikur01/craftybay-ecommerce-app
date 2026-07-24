@@ -3,6 +3,7 @@ import 'package:crafty_bay/features/auth/presentation/screens/sign_in_screen.dar
 import 'package:crafty_bay/features/cart/data/models/add_to_cart_params.dart';
 import 'package:crafty_bay/features/cart/presentation/providers/add_to_cart_provider.dart';
 import 'package:crafty_bay/features/products/presentation/providers/product_details_provider.dart';
+import 'package:crafty_bay/features/products/presentation/screens/review_list_screen.dart';
 import 'package:crafty_bay/features/shared/presentation/widgets/centered_progress_indicator.dart';
 import 'package:crafty_bay/features/shared/presentation/widgets/snack_bar_message.dart';
 import 'package:flutter/material.dart';
@@ -111,13 +112,19 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                     ],
                                   ),
                                   TextButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      Navigator.pushNamed(
+                                        context,
+                                        ReviewListScreen.name,
+                                        arguments: widget.productId,
+                                      );
+                                    },
                                     child: Text('Reviews'),
                                   ),
                                   Container(
-                                    padding: .all(2),
+                                    padding: const EdgeInsets.all(2),
                                     decoration: BoxDecoration(
-                                      borderRadius: .circular(4),
+                                      borderRadius: BorderRadius.circular(4),
                                       color: AppColors.themeColor,
                                     ),
                                     child: Icon(
