@@ -30,9 +30,9 @@
 | :---: | :---: | :---: | :---: |
 | <img src="screenshorts/5.jpg" width="150" alt="Categories" /> | <img src="screenshorts/6.jpg" width="150" alt="Product Details" /> | <img src="screenshorts/7.jpg" width="150" alt="Cart Management" /> | <img src="screenshorts/8.jpg" width="150" alt="Wishlist" /> |
 
-| Reviews & Ratings | | | |
-| :---: | :---: | :---: | :---: |
-| <img src="screenshorts/9.jpg" width="150" alt="Reviews & Ratings" /> | | | |
+| Reviews & Ratings |
+| :---: |
+| <img src="screenshorts/9.jpg" width="150" alt="Reviews & Ratings" /> |
 
 ---
 
