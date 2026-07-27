@@ -70,13 +70,25 @@ class CartListProvider extends ChangeNotifier {
   }
 
   Future<bool> deleteCartItem(String cartItemId) async {
-    _cartList.removeWhere((item) => item.id == cartItemId);
+    final int index = _cartList.indexWhere((item) => item.id == cartItemId);
+    if (index == -1) return false;
+
+    final CartItemModel item = _cartList[index];
+    _cartList.removeAt(index);
     notifyListeners();
 
     final NetworkResponse response = await getNetworkCaller().deleteRequest(
       Urls.deleteCartUrl(cartItemId),
     );
 
-    return response.isSuccess;
+    if (response.isSuccess) {
+      _errorMessage = null;
+      return true;
+    } else {
+      _cartList.insert(index, item);
+      _errorMessage = response.errorMessage;
+      notifyListeners();
+      return false;
+    }
   }
 }
