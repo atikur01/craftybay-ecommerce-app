@@ -36,7 +36,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
 
   String? _selectedColor;
   String? _selectedSize;
-  int _quantity = 1;
+  final int _quantity = 1;
 
   @override
   void initState() {
@@ -234,6 +234,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
 
   Future<void> _onTapAddToCart() async {
     if (await AuthController.isLoggedIn() == false) {
+      if (!mounted) return;
       Navigator.pushNamed(context, SignInScreen.name);
       return;
     }
@@ -246,6 +247,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     );
 
     final isSuccess = await _addToCartProvider.addToCart(params);
+    if (!mounted) return;
     if (isSuccess) {
       showSnackBarMessage(context, 'Added to cart');
     } else {

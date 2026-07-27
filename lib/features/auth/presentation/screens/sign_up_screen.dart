@@ -199,6 +199,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       password: _passwordTEController.text,
     );
     final bool isSuccess = await _signUpProvider.signUp(params);
+    if (!mounted) return;
     if (isSuccess) {
       Navigator.pushNamed(context, VerifyOtpScreen.name,
           arguments: _emailTEController.text.trim());

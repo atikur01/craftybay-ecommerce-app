@@ -27,6 +27,7 @@ class _SplashScreenState extends State<SplashScreen> {
     if (await AuthController.isLoggedIn()) {
       await AuthController.loadUserData();
     }
+    if (!mounted) return;
     Navigator.pushNamedAndRemoveUntil(
         context, MainNavHolderScreen.name, (predicate) => false);
   }

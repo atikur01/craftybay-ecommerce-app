@@ -1,6 +1,5 @@
 import 'package:crafty_bay/app/crafty_bay_app.dart';
 import 'package:crafty_bay/features/auth/presentation/screens/sign_in_screen.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../app/providers/auth_controller.dart';

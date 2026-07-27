@@ -41,7 +41,7 @@ class _WishlistScreenState extends State<WishlistScreen> {
   Widget build(BuildContext context) {
     return PopScope(
       canPop: false,
-      onPopInvokedWithResult: (_, __) => _backToHome(),
+      onPopInvokedWithResult: (_, _) => _backToHome(),
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Wishlist'),
