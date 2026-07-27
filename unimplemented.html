@@ -405,12 +405,12 @@
             </div>
             <div class="stat-card">
                 <div class="stat-title">Implemented Non-Admin</div>
-                <div class="stat-value">17</div>
+                <div class="stat-value">19</div>
                 <div class="stat-desc">Active customer features</div>
             </div>
             <div class="stat-card">
                 <div class="stat-title">Unimplemented Non-Admin</div>
-                <div class="stat-value" style="color: #F87171;">13</div>
+                <div class="stat-value" style="color: #F87171;">11</div>
                 <div class="stat-desc">Pending customer features</div>
             </div>
         </div>
@@ -423,7 +423,7 @@
                 <input type="text" id="searchInput" placeholder="Search by path, module, or method...">
             </div>
             <div class="filter-group">
-                <button class="filter-btn active" data-filter="ALL">All (13)</button>
+                <button class="filter-btn active" data-filter="ALL">All (11)</button>
                 <button class="filter-btn" data-filter="GET">GET</button>
                 <button class="filter-btn" data-filter="POST">POST</button>
                 <button class="filter-btn" data-filter="PATCH">PATCH</button>
@@ -444,22 +444,6 @@
                     </tr>
                 </thead>
                 <tbody id="endpointTable">
-                    <tr data-method="GET" data-module="Brand">
-                        <td><span class="method-badge method-GET">GET</span></td>
-                        <td><span class="endpoint-path">/api/brands</span></td>
-                        <td><span class="module-tag">Brand</span></td>
-                        <td>brand-list</td>
-                        <td>Retrieves list of all available brands</td>
-                        <td><span class="status-tag"><span class="status-dot"></span> Unimplemented</span></td>
-                    </tr>
-                    <tr data-method="GET" data-module="Brand">
-                        <td><span class="method-badge method-GET">GET</span></td>
-                        <td><span class="endpoint-path">/api/brands/:brand_id</span></td>
-                        <td><span class="module-tag">Brand</span></td>
-                        <td>read-brand</td>
-                        <td>Retrieves single brand details by brand ID</td>
-                        <td><span class="status-tag"><span class="status-dot"></span> Unimplemented</span></td>
-                    </tr>
                     <tr data-method="GET" data-module="Category">
                         <td><span class="method-badge method-GET">GET</span></td>
                         <td><span class="endpoint-path">/api/categories/:cat_id</span></td>
