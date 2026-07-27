@@ -22,20 +22,17 @@
   <b>App UI Gallery</b> (Small Size Preview)
 </p>
 
-| Splash & Authentication | Home Dashboard | Product Catalog |
-| :---: | :---: | :---: |
-| <img src="screenshorts/1.jpg" width="180" alt="Splash Screen" /> | <img src="screenshorts/2.jpg" width="180" alt="Home Dashboard" /> | <img src="screenshorts/3.jpg" width="180" alt="Product Catalog" /> |
-| *Splash / Welcome* | *Home & Banners* | *Categories & Products* |
+| Sign In | Sign Up Profile | OTP Verification | Home Dashboard |
+| :---: | :---: | :---: | :---: |
+| <img src="screenshorts/1.jpg" width="150" alt="Sign In" /> | <img src="screenshorts/2.jpg" width="150" alt="Sign Up" /> | <img src="screenshorts/3.jpg" width="150" alt="OTP Verification" /> | <img src="screenshorts/4.jpg" width="150" alt="Home Dashboard" /> |
 
-| Product Details | Cart Management | Wishlist |
-| :---: | :---: | :---: |
-| <img src="screenshorts/4.jpg" width="180" alt="Product Details" /> | <img src="screenshorts/5.jpg" width="180" alt="Cart Screen" /> | <img src="screenshorts/6.jpg" width="180" alt="Wishlist Screen" /> |
-| *Product Info & Specs* | *Cart & Quantity* | *Saved Items* |
+| Categories & Sliders | Product Details | Cart Management | Wishlist |
+| :---: | :---: | :---: | :---: |
+| <img src="screenshorts/5.jpg" width="150" alt="Categories" /> | <img src="screenshorts/6.jpg" width="150" alt="Product Details" /> | <img src="screenshorts/7.jpg" width="150" alt="Cart Management" /> | <img src="screenshorts/8.jpg" width="150" alt="Wishlist" /> |
 
-| Customer Reviews | User Profile | Orders & Checkout |
-| :---: | :---: | :---: |
-| <img src="screenshorts/7.jpg" width="180" alt="Reviews & Ratings" /> | <img src="screenshorts/8.jpg" width="180" alt="User Profile" /> | <img src="screenshorts/9.jpg" width="180" alt="Order History" /> |
-| *Ratings & Feedback* | *Profile & Settings* | *My Orders* |
+| Reviews & Ratings | | | |
+| :---: | :---: | :---: | :---: |
+| <img src="screenshorts/9.jpg" width="150" alt="Reviews & Ratings" /> | | | |
 
 ---
 
