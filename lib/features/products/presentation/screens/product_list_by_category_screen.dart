@@ -11,6 +11,7 @@ class ProductListByCategoryScreen extends StatefulWidget {
     this.categoryId,
     this.brandId,
     this.tag,
+    this.remark,
     required this.categoryName,
   });
 
@@ -19,6 +20,7 @@ class ProductListByCategoryScreen extends StatefulWidget {
   final String? categoryId;
   final String? brandId;
   final String? tag;
+  final String? remark;
   final String categoryName;
 
   @override
@@ -38,6 +40,7 @@ class _ProductListByCategoryScreenState
       categoryId: widget.categoryId,
       brandId: widget.brandId,
       tag: widget.tag,
+      remark: widget.remark,
     );
     _scrollController.addListener(_loadMore);
   }
@@ -49,6 +52,7 @@ class _ProductListByCategoryScreenState
         categoryId: widget.categoryId,
         brandId: widget.brandId,
         tag: widget.tag,
+        remark: widget.remark,
       );
     }
   }

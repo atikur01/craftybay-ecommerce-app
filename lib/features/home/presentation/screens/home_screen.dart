@@ -10,6 +10,7 @@ import 'package:crafty_bay/features/shared/presentation/widgets/product_card.dar
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../core/constants/app_constants.dart';
 import '../../../shared/presentation/providers/main_nav_holder_provider.dart';
 import '../widgets/home_app_bar.dart';
 import '../widgets/home_brand_section.dart';
@@ -66,7 +67,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     ProductListByCategoryScreen.name,
                     arguments: {
                       'categoryName': 'Popular Products',
-                      'tag': 'popular',
+                      'remark': 'popular',
+                      'categoryId': AppConstants.popularCategoryId,
                     },
                   );
                 },
@@ -93,7 +95,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     ProductListByCategoryScreen.name,
                     arguments: {
                       'categoryName': 'Special Products',
-                      'tag': 'special',
+                      'remark': 'special',
+                      'categoryId': AppConstants.specialCategoryId,
                     },
                   );
                 },
@@ -120,7 +123,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     ProductListByCategoryScreen.name,
                     arguments: {
                       'categoryName': 'New Products',
-                      'tag': 'new',
+                      'remark': 'new',
+                      'categoryId': AppConstants.newCategoryId,
                     },
                   );
                 },

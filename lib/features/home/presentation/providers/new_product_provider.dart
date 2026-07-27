@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../app/get_network_caller.dart';
 import '../../../../app/urls.dart';
+import '../../../../core/constants/app_constants.dart';
 import '../../../../core/service/network_caller/network_caller.dart';
 import '../../../shared/data/models/product_model.dart';
 
@@ -19,24 +20,27 @@ class NewProductProvider extends ChangeNotifier {
     _getNewProductsInProgress = true;
     notifyListeners();
 
-    final NetworkResponse response = await getNetworkCaller().getRequest(
-      Urls.productListUrl(1, 10, tag: 'new'),
+    NetworkResponse response = await getNetworkCaller().getRequest(
+      Urls.productListUrl(1, 10, remark: 'new'),
     );
 
-    if (response.isSuccess) {
+    bool hasData = response.isSuccess &&
+        response.body != null &&
+        response.body['data'] != null &&
+        (response.body['data']['results'] as List).isNotEmpty;
+
+    if (!hasData) {
+      response = await getNetworkCaller().getRequest(
+        Urls.productListUrl(1, 10, categoryId: AppConstants.newCategoryId),
+      );
+    }
+
+    if (response.isSuccess &&
+        response.body != null &&
+        response.body['data'] != null) {
       List<ProductModel> list = [];
       for (Map<String, dynamic> jsonData in response.body['data']['results']) {
         list.add(ProductModel.fromJson(jsonData));
-      }
-      if (list.isEmpty) {
-        final NetworkResponse fallbackResponse = await getNetworkCaller().getRequest(
-          Urls.productListUrl(3, 10),
-        );
-        if (fallbackResponse.isSuccess) {
-          for (Map<String, dynamic> jsonData in fallbackResponse.body['data']['results']) {
-            list.add(ProductModel.fromJson(jsonData));
-          }
-        }
       }
       _productList = list;
       isSuccess = true;

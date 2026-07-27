@@ -39,6 +39,7 @@ class AppRoutes {
           categoryId: args['categoryId'],
           brandId: args['brandId'],
           tag: args['tag'],
+          remark: args['remark'],
           categoryName: args['categoryName'],
         );
       case ProductDetailsScreen.name:

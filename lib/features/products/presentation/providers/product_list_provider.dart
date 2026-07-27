@@ -28,7 +28,12 @@ class ProductListProvider extends ChangeNotifier {
 
   List<ProductModel> get productList => _productList;
 
-  Future<bool> getProductData({String? categoryId, String? brandId, String? tag}) async {
+  Future<bool> getProductData({
+    String? categoryId,
+    String? brandId,
+    String? tag,
+    String? remark,
+  }) async {
     bool isSuccess = false;
 
     if (_currentPage == 0 || (_lastPage != null && _currentPage < _lastPage!)) {
@@ -44,29 +49,41 @@ class ProductListProvider extends ChangeNotifier {
     }
     notifyListeners();
 
-    final NetworkResponse response = await getNetworkCaller().getRequest(
+    NetworkResponse response = await getNetworkCaller().getRequest(
       Urls.productListUrl(
         _currentPage,
         _productsPerPage,
         categoryId: categoryId,
         brandId: brandId,
         tag: tag,
+        remark: remark,
       ),
     );
-    if (response.isSuccess) {
+
+    if (_currentPage == 1 &&
+        remark != null &&
+        categoryId != null &&
+        (!response.isSuccess ||
+            response.body == null ||
+            response.body['data'] == null ||
+            (response.body['data']['results'] as List).isEmpty)) {
+      response = await getNetworkCaller().getRequest(
+        Urls.productListUrl(
+          _currentPage,
+          _productsPerPage,
+          categoryId: categoryId,
+          brandId: brandId,
+          tag: tag,
+        ),
+      );
+    }
+
+    if (response.isSuccess &&
+        response.body != null &&
+        response.body['data'] != null) {
       List<ProductModel> list = [];
       for (Map<String, dynamic> jsonData in response.body['data']['results']) {
         list.add(ProductModel.fromJson(jsonData));
-      }
-      if (list.isEmpty && _currentPage == 1) {
-        final NetworkResponse fallbackResponse = await getNetworkCaller().getRequest(
-          Urls.productListUrl(_currentPage, _productsPerPage),
-        );
-        if (fallbackResponse.isSuccess) {
-          for (Map<String, dynamic> jsonData in fallbackResponse.body['data']['results']) {
-            list.add(ProductModel.fromJson(jsonData));
-          }
-        }
       }
       _productList.addAll(list);
       _lastPage = response.body['data']['last_page'];
