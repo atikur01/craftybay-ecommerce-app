@@ -26,6 +26,7 @@ class LocaleProvider extends ChangeNotifier {
     String? locale = sharedPreferences.getString('locale');
     if (locale != null) {
       _currentLocale = Locale(locale);
+      notifyListeners();
     }
   }
 }

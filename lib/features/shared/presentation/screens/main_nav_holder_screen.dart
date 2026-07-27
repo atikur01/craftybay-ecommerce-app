@@ -9,6 +9,7 @@ import 'package:crafty_bay/features/home/presentation/providers/special_product_
 import 'package:crafty_bay/features/home/presentation/screens/home_screen.dart';
 import 'package:crafty_bay/features/wishlist/presentation/providers/wish_list_provider.dart';
 import 'package:crafty_bay/features/wishlist/presentation/screens/wishlist_screen.dart';
+import 'package:crafty_bay/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -52,6 +53,8 @@ class _MainNavHolderScreenState extends State<MainNavHolderScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+
     return MultiProvider(
       providers: [
         ChangeNotifierProvider.value(value: _homeSlidersProvider),
@@ -71,18 +74,21 @@ class _MainNavHolderScreenState extends State<MainNavHolderScreen> {
               showUnselectedLabels: true,
               onTap: mainNavHolderProvider.changeIndex,
               items: [
-                BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.dashboard),
-                  label: 'Category',
+                  icon: const Icon(Icons.home),
+                  label: l10n?.home ?? 'Home',
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.shopping_basket_outlined),
-                  label: 'Carts',
+                  icon: const Icon(Icons.dashboard),
+                  label: l10n?.category ?? 'Category',
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.favorite_outline),
-                  label: 'Wishlist',
+                  icon: const Icon(Icons.shopping_basket_outlined),
+                  label: l10n?.carts ?? 'Carts',
+                ),
+                BottomNavigationBarItem(
+                  icon: const Icon(Icons.favorite_outline),
+                  label: l10n?.wishlist ?? 'Wishlist',
                 ),
               ],
             ),

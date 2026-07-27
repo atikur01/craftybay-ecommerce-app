@@ -22,6 +22,7 @@ class ThemeModeProvider extends ChangeNotifier {
     String? themeMode = sharedPreferences.getString('theme-mode');
     if (themeMode != null) {
       _currentThemeMode = _parseThemeMode(themeMode);
+      notifyListeners();
     }
   }
 
