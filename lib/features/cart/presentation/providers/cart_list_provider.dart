@@ -52,7 +52,7 @@ class CartListProvider extends ChangeNotifier {
     return total;
   }
 
-  void updateCartItemQuantity(String cartItemId, int quantity) {
+  Future<bool> updateCartItemQuantity(String cartItemId, int quantity) async {
     for (CartItemModel item in _cartList) {
       if (item.id == cartItemId) {
         item.quantity = quantity;
@@ -60,5 +60,23 @@ class CartListProvider extends ChangeNotifier {
       }
     }
     notifyListeners();
+
+    final NetworkResponse response = await getNetworkCaller().patchRequest(
+      Urls.updateCartUrl(cartItemId),
+      body: {'quantity': quantity},
+    );
+
+    return response.isSuccess;
+  }
+
+  Future<bool> deleteCartItem(String cartItemId) async {
+    _cartList.removeWhere((item) => item.id == cartItemId);
+    notifyListeners();
+
+    final NetworkResponse response = await getNetworkCaller().deleteRequest(
+      Urls.deleteCartUrl(cartItemId),
+    );
+
+    return response.isSuccess;
   }
 }

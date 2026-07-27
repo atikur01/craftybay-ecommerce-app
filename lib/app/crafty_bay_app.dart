@@ -1,6 +1,7 @@
 import 'package:crafty_bay/app/providers/locale_provider.dart';
 import 'package:crafty_bay/app/providers/theme_mode_provider.dart';
 import 'package:crafty_bay/features/brand/presentation/providers/brand_list_provider.dart';
+import 'package:crafty_bay/features/order/presentation/providers/order_provider.dart';
 import 'package:crafty_bay/features/profile/presentation/providers/profile_provider.dart';
 import 'package:crafty_bay/features/shared/presentation/providers/main_nav_holder_provider.dart';
 import 'package:crafty_bay/features/wishlist/presentation/providers/wish_list_provider.dart';
@@ -45,6 +46,7 @@ class _CraftyBayAppState extends State<CraftyBayApp> {
         ChangeNotifierProvider(
           create: (_) => BrandListProvider()..getBrandData(),
         ),
+        ChangeNotifierProvider(create: (_) => OrderProvider()),
       ],
       child: Consumer<LocaleProvider>(
         builder: (context, localeProvider, _) {

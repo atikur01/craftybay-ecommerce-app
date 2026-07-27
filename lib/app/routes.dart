@@ -1,5 +1,7 @@
-import 'package:crafty_bay/features/profile/presentation/screens/edit_profile_screen.dart';
-import 'package:crafty_bay/features/profile/presentation/screens/profile_details_screen.dart';
+import '../features/order/presentation/screens/order_details_screen.dart';
+import '../features/order/presentation/screens/order_list_screen.dart';
+import '../features/profile/presentation/screens/edit_profile_screen.dart';
+import '../features/profile/presentation/screens/profile_details_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../features/auth/presentation/screens/sign_in_screen.dart';
@@ -52,6 +54,11 @@ class AppRoutes {
         widget = const ProfileDetailsScreen();
       case EditProfileScreen.name:
         widget = const EditProfileScreen();
+      case OrderListScreen.name:
+        widget = const OrderListScreen();
+      case OrderDetailsScreen.name:
+        final String orderId = settings.arguments as String;
+        widget = OrderDetailsScreen(orderId: orderId);
     }
 
     return MaterialPageRoute(builder: (ctx) => widget);

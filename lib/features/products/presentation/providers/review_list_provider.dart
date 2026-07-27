@@ -40,4 +40,46 @@ class ReviewListProvider extends ChangeNotifier {
 
     return isSuccess;
   }
+
+  Future<bool> updateReview(String reviewId, {int? rating, String? comment}) async {
+    bool isSuccess = false;
+
+    final Map<String, dynamic> body = {};
+    if (rating != null) body['rating'] = rating;
+    if (comment != null) body['comment'] = comment;
+
+    final NetworkResponse response = await getNetworkCaller().patchRequest(
+      Urls.updateReviewUrl(reviewId),
+      body: body,
+    );
+
+    if (response.isSuccess) {
+      isSuccess = true;
+      _errorMessage = null;
+    } else {
+      _errorMessage = response.errorMessage;
+    }
+
+    notifyListeners();
+    return isSuccess;
+  }
+
+  Future<bool> deleteReview(String reviewId) async {
+    bool isSuccess = false;
+
+    final NetworkResponse response = await getNetworkCaller().deleteRequest(
+      Urls.deleteReviewUrl(reviewId),
+    );
+
+    if (response.isSuccess) {
+      _reviewList.removeWhere((item) => item.id == reviewId);
+      isSuccess = true;
+      _errorMessage = null;
+    } else {
+      _errorMessage = response.errorMessage;
+    }
+
+    notifyListeners();
+    return isSuccess;
+  }
 }

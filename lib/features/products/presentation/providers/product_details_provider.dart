@@ -41,4 +41,28 @@ class ProductDetailsProvider extends ChangeNotifier {
 
     return isSuccess;
   }
+
+  Future<bool> getProductDetailsBySlug(String slug) async {
+    bool isSuccess = false;
+
+    _getProductDetailsInProgress = true;
+    notifyListeners();
+
+    final NetworkResponse response = await getNetworkCaller().getRequest(
+      Urls.productDetailsBySlugUrl(slug),
+    );
+
+    if (response.isSuccess) {
+      _productDetails = ProductDetailsModel.fromJson(response.body['data']);
+      isSuccess = true;
+      _errorMessage = null;
+    } else {
+      _errorMessage = response.errorMessage;
+    }
+
+    _getProductDetailsInProgress = false;
+    notifyListeners();
+
+    return isSuccess;
+  }
 }

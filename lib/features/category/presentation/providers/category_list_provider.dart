@@ -70,6 +70,31 @@ class CategoryListProvider extends ChangeNotifier {
     return isSuccess;
   }
 
+  CategoryModel? _selectedCategory;
+  bool _isDetailsLoading = false;
+
+  CategoryModel? get selectedCategory => _selectedCategory;
+  bool get isDetailsLoading => _isDetailsLoading;
+
+  Future<CategoryModel?> getCategoryDetails(String categoryId) async {
+    _isDetailsLoading = true;
+    notifyListeners();
+
+    final NetworkResponse response = await getNetworkCaller().getRequest(
+      Urls.readCategoryUrl(categoryId),
+    );
+
+    if (response.isSuccess && response.body['data'] != null) {
+      _selectedCategory = CategoryModel.fromJson(response.body['data']);
+    } else {
+      _errorMessage = response.errorMessage;
+    }
+
+    _isDetailsLoading = false;
+    notifyListeners();
+    return _selectedCategory;
+  }
+
   void refreshCategoryList() {
     _currentPage = 0;
     _lastPage = null;

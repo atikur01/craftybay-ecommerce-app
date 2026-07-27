@@ -58,4 +58,34 @@ class Urls {
       '$_baseUrl/reviews?product=$productId';
 
   static const String createReviewUrl = '$_baseUrl/review';
+
+  static String readCategoryUrl(String categoryId) =>
+      '$_baseUrl/categories/$categoryId';
+
+  static String productDetailsBySlugUrl(String slug) =>
+      '$_baseUrl/products/slug/$slug';
+
+  static String updateReviewUrl(String reviewId) =>
+      '$_baseUrl/reviews/$reviewId';
+
+  static String deleteReviewUrl(String reviewId) =>
+      '$_baseUrl/reviews/$reviewId';
+
+  static String updateCartUrl(String cartItemId) =>
+      '$_baseUrl/cart/$cartItemId';
+
+  static String deleteCartUrl(String cartItemId) =>
+      '$_baseUrl/cart/$cartItemId';
+
+  static const String orderListUrl = '$_baseUrl/orders';
+
+  static String readOrderUrl(String orderId) =>
+      '$_baseUrl/orders/$orderId';
+
+  static const String createOrderUrl = '$_baseUrl/order';
+
+  static String cancelOrderUrl(String orderId) =>
+      '$_baseUrl/orders/$orderId/cancel';
+
+  static const String orderTransactionUrl = '$_baseUrl/orders/transaction';
 }
