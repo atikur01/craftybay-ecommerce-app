@@ -9,6 +9,7 @@ class ProductListByCategoryScreen extends StatefulWidget {
   const ProductListByCategoryScreen({
     super.key,
     this.categoryId,
+    this.brandId,
     this.tag,
     required this.categoryName,
   });
@@ -16,6 +17,7 @@ class ProductListByCategoryScreen extends StatefulWidget {
   static const String name = '/products-list-by-category';
 
   final String? categoryId;
+  final String? brandId;
   final String? tag;
   final String categoryName;
 
@@ -34,6 +36,7 @@ class _ProductListByCategoryScreenState
     super.initState();
     _productListProvider.getProductData(
       categoryId: widget.categoryId,
+      brandId: widget.brandId,
       tag: widget.tag,
     );
     _scrollController.addListener(_loadMore);
@@ -44,6 +47,7 @@ class _ProductListByCategoryScreenState
         _scrollController.position.extentBefore < 300) {
       _productListProvider.getProductData(
         categoryId: widget.categoryId,
+        brandId: widget.brandId,
         tag: widget.tag,
       );
     }

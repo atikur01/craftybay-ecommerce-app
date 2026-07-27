@@ -1,3 +1,4 @@
+import 'package:crafty_bay/features/brand/presentation/screens/brand_list_screen.dart';
 import 'package:crafty_bay/features/home/presentation/providers/home_sliders_provider.dart';
 import 'package:crafty_bay/features/home/presentation/providers/new_product_provider.dart';
 import 'package:crafty_bay/features/home/presentation/providers/popular_product_provider.dart';
@@ -11,6 +12,7 @@ import 'package:provider/provider.dart';
 
 import '../../../shared/presentation/providers/main_nav_holder_provider.dart';
 import '../widgets/home_app_bar.dart';
+import '../widgets/home_brand_section.dart';
 import '../widgets/home_carousel_slider.dart';
 import '../widgets/home_category_section.dart';
 import '../widgets/product_search_bar.dart';
@@ -137,6 +139,16 @@ class _HomeScreenState extends State<HomeScreen> {
                   );
                 },
               ),
+              SectionHeader(
+                headerText: 'Brands',
+                onTapSeeAll: () {
+                  Navigator.pushNamed(
+                    context,
+                    BrandListScreen.name,
+                  );
+                },
+              ),
+              const HomeBrandSection(),
             ],
           ),
         ),

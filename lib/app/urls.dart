@@ -11,12 +11,18 @@ class Urls {
   static String categoryListUrl(int pageNo, int count) =>
       '$_baseUrl/categories?count=$count&page=$pageNo';
 
+  static String brandListUrl(int pageNo, int count) =>
+      '$_baseUrl/brands?count=$count&page=$pageNo';
+
+  static String readBrandUrl(String brandId) => '$_baseUrl/brands/$brandId';
+
   static String productListUrl(
     int currentPage,
     int productsPerPage, {
     String? tag,
     String? remark,
     String? categoryId,
+    String? brandId,
   }) {
     String url = '$_baseUrl/products?count=$productsPerPage&page=$currentPage';
     if (tag != null && tag.isNotEmpty) {
@@ -27,6 +33,9 @@ class Urls {
     }
     if (categoryId != null && categoryId.isNotEmpty) {
       url += '&category=$categoryId';
+    }
+    if (brandId != null && brandId.isNotEmpty) {
+      url += '&brand=$brandId';
     }
     return url;
   }

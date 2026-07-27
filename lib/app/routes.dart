@@ -6,6 +6,7 @@ import '../features/auth/presentation/screens/sign_in_screen.dart';
 import '../features/auth/presentation/screens/sign_up_screen.dart';
 import '../features/auth/presentation/screens/splash_screen.dart';
 import '../features/auth/presentation/screens/verify_otp_screen.dart';
+import '../features/brand/presentation/screens/brand_list_screen.dart';
 import '../features/products/presentation/screens/create_review_screen.dart';
 import '../features/products/presentation/screens/product_details_screen.dart';
 import '../features/products/presentation/screens/product_list_by_category_screen.dart';
@@ -28,10 +29,13 @@ class AppRoutes {
         widget = VerifyOtpScreen(email: email);
       case MainNavHolderScreen.name:
         widget = MainNavHolderScreen();
+      case BrandListScreen.name:
+        widget = const BrandListScreen();
       case ProductListByCategoryScreen.name:
         Map<String, dynamic> args = settings.arguments as Map<String, dynamic>;
         widget = ProductListByCategoryScreen(
           categoryId: args['categoryId'],
+          brandId: args['brandId'],
           tag: args['tag'],
           categoryName: args['categoryName'],
         );
