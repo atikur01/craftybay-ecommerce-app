@@ -1,3 +1,4 @@
+import 'package:crafty_bay/app/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -72,7 +73,7 @@ class _OrderListScreenState extends State<OrderListScreen> {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Text(
-                        '\$${order.totalAmount}',
+                        '${Constants.takaSign}${order.totalAmount}',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: AppColors.themeColor,

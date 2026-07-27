@@ -1,3 +1,4 @@
+import 'package:crafty_bay/app/constants.dart';
 import 'package:crafty_bay/app/providers/auth_controller.dart';
 import 'package:crafty_bay/features/auth/presentation/screens/sign_in_screen.dart';
 import 'package:crafty_bay/features/shared/data/models/product_model.dart';
@@ -73,7 +74,7 @@ class ProductCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          '\$${productModel.price}',
+                          '${Constants.takaSign}${productModel.price}',
                           style: textTheme.bodyLarge?.copyWith(
                             fontWeight: FontWeight.w600,
                             color: AppColors.themeColor,

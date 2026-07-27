@@ -1,3 +1,4 @@
+import 'package:crafty_bay/app/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -54,7 +55,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                 const SizedBox(height: 8),
                 Text('Status: ${order.status.toUpperCase()}'),
                 Text('Payment Method: ${order.paymentMethod.toUpperCase()}'),
-                Text('Total Amount: \$${order.totalAmount}'),
+                Text('Total Amount: ${Constants.takaSign}${order.totalAmount}'),
                 const SizedBox(height: 16),
                 if (order.shippingAddress != null) ...[
                   const Text(
