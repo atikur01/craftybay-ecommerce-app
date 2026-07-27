@@ -32,7 +32,7 @@
 
 | User Profile | Reviews & Ratings | Order Details |
 | :---: | :---: | :---: |
-| <img src="screenshorts/9.jpg" width="150" alt="User Profile" /> | <img src="screenshorts/10.jpg" width="150" alt="Reviews & Ratings" /> | <img src="screenshorts/11.jpg" width="150" alt="Order Details" /> |
+| <img src="screenshorts/9.jpg" width="150" alt="User Profile" /> | <img src="screenshorts/10.jpg" width="150" alt="Reviews & Ratings" /> | <img src="screenshorts/11.jpg" width="150" alt="Reviews & Ratings" /> |
 
 ---
 
