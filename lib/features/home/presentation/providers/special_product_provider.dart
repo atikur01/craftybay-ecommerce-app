@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../app/get_network_caller.dart';
 import '../../../../app/urls.dart';
 import '../../../../core/service/network_caller/network_caller.dart';
+import '../../../category/data/models/category_model.dart';
 import '../../../shared/data/models/product_model.dart';
 
 class SpecialProductProvider extends ChangeNotifier {
@@ -14,13 +15,41 @@ class SpecialProductProvider extends ChangeNotifier {
   List<ProductModel> get productList => _productList;
   String? get errorMessage => _errorMessage;
 
-  Future<bool> getSpecialProducts() async {
+  Future<bool> getSpecialProducts({String? categoryId}) async {
     bool isSuccess = false;
     _getSpecialProductsInProgress = true;
     notifyListeners();
 
+    String? targetCategoryId = categoryId;
+
+    if (targetCategoryId == null) {
+      final NetworkResponse categoryResponse = await getNetworkCaller().getRequest(
+        Urls.categoryListUrl(1, 32),
+      );
+
+      if (categoryResponse.isSuccess && categoryResponse.body['data'] != null) {
+        for (Map<String, dynamic> jsonData in categoryResponse.body['data']['results']) {
+          CategoryModel category = CategoryModel.fromJson(jsonData);
+          if (category.title.toLowerCase().contains('special')) {
+            targetCategoryId = category.id;
+            break;
+          }
+        }
+        if (targetCategoryId == null &&
+            (categoryResponse.body['data']['results'] as List).isNotEmpty) {
+          targetCategoryId =
+              categoryResponse.body['data']['results'][0]['_id'];
+        }
+      }
+    }
+
     final NetworkResponse response = await getNetworkCaller().getRequest(
-      Urls.productListUrl(1, 10, tag: 'special'),
+      Urls.productListUrl(
+        1,
+        10,
+        categoryId: targetCategoryId,
+        tag: targetCategoryId == null ? 'special' : null,
+      ),
     );
 
     if (response.isSuccess) {
@@ -29,11 +58,13 @@ class SpecialProductProvider extends ChangeNotifier {
         list.add(ProductModel.fromJson(jsonData));
       }
       if (list.isEmpty) {
-        final NetworkResponse fallbackResponse = await getNetworkCaller().getRequest(
+        final NetworkResponse fallbackResponse =
+            await getNetworkCaller().getRequest(
           Urls.productListUrl(2, 10),
         );
         if (fallbackResponse.isSuccess) {
-          for (Map<String, dynamic> jsonData in fallbackResponse.body['data']['results']) {
+          for (Map<String, dynamic> jsonData
+              in fallbackResponse.body['data']['results']) {
             list.add(ProductModel.fromJson(jsonData));
           }
         }
