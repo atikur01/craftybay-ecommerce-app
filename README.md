@@ -125,7 +125,7 @@ lib/
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/your-username/crafty_bay.git
+   git [clone https://github.com/your-username/crafty_bay.git](https://github.com/atikur01/craftybay-ecommerce-app)
    cd crafty_bay
    ```
 
